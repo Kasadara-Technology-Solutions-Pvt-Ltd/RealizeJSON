@@ -3,9 +3,9 @@
   <Metadata>
     <Identity Id="RealizeJSON.VisualStudio.6f3d9a7e-2c4b-4e8a-9b1d-5a7c3e2f8d10" Version="0.1.0" Language="en-US" Publisher="Kasadara Technology Solutions Private Limited" />
     <DisplayName>RealizeJSON - Live JSON Serialization Preview</DisplayName>
-    <Description xml:space="preserve">Visualize how your C# types serialize into JSON in real time, without building or running your application. Static preview with System.Text.Json and Newtonsoft.Json rules; sample values are illustrative, not guaranteed runtime output.</Description>
-    <License>LICENSE</License>
+    <Description>Visualize how your C# types serialize into JSON in real time, without building or running your application. Static preview with System.Text.Json and Newtonsoft.Json rules; sample values are illustrative, not guaranteed runtime output.</Description>
     <MoreInfo>https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON</MoreInfo>
+    <License>LICENSE</License>
     <ReleaseNotes>https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/blob/main/CHANGELOG.md</ReleaseNotes>
     <Icon>Resources\RealizeJSON-128.png</Icon>
     <PreviewImage>Resources\RealizeJSON-preview-200.png</PreviewImage>
