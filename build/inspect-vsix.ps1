@@ -24,7 +24,7 @@ try {
     $required = @('extension.vsixmanifest', 'manifest.json', 'catalog.json', 'RealizeJSON.VisualStudio.dll', 'RealizeJSON.VisualStudio.pkgdef',
         'RealizeJSON.Core.dll', 'RealizeJSON.CodeAnalysis.dll', 'RealizeJSON.Serialization.dll', 'RealizeJSON.Serialization.SystemTextJson.dll',
         'RealizeJSON.Serialization.NewtonsoftJson.dll', 'RealizeJSON.SampleData.dll', 'RealizeJSON.UI.dll', 'RealizeJSON.Diagnostics.dll',
-        'Resources/RealizeJSON-128.png')
+        'Resources/RealizeJSON-128.png', 'LICENSE')
     $missing = $required | Where-Object { $entries -notcontains $_ }
     if ($missing) { throw "VSIX is missing: $($missing -join ', ')" }
 
@@ -35,7 +35,7 @@ try {
     $reader = [System.IO.StreamReader]::new($manifestEntry.Open())
     $manifest = $reader.ReadToEnd()
     $reader.Dispose()
-    foreach ($needle in @('RealizeJSON - Live JSON Serialization Preview', 'Microsoft.VisualStudio.Community', '[17.8,)', 'RealizeJSON-128.png')) {
+    foreach ($needle in @('RealizeJSON - Live JSON Serialization Preview', 'Microsoft.VisualStudio.Community', '[17.8,)', 'RealizeJSON-128.png', '<License>LICENSE</License>')) {
         if (-not $manifest.Contains($needle)) { throw "Manifest is missing '$needle'." }
     }
 

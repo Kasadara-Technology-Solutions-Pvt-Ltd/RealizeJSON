@@ -1,6 +1,6 @@
 # Visual Studio Marketplace listing (draft — not published)
 
-> Publishing requires separate authorization, a confirmed Marketplace publisher ID, a finalized license, screenshots
+> Publishing requires separate authorization, a confirmed Marketplace publisher ID, screenshots
 > from a validated build and completion of the release checklist. Nothing here has been submitted.
 
 ## Metadata
@@ -14,6 +14,7 @@
 | Icon | `assets/branding/png/realizejson-128.png` |
 | Supported products | Visual Studio 2022 17.8+ (x64, Arm64) — add Visual Studio 2026 only after validation |
 | Price | Free |
+| License | Apache-2.0 |
 | Repository | https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON |
 
 ## Overview (listing body)

@@ -78,6 +78,12 @@ authorization (see the release checklist).
 No telemetry, including Visual Studio fault reporting helpers (`FileAndForget` is not used). Failures are written only
 to the local Visual Studio ActivityLog without source text.
 
+## ADR-010 — Apache License 2.0
+
+The repository owner added the Apache License 2.0. It is referenced by the VSIX manifest and shipped in the VSIX.
+Contributions are inbound = outbound under Apache-2.0 with a DCO sign-off (the repository requires sign-off for web
+commits).
+
 ## Dependency versions
 
 | Package | Version | Use | License |

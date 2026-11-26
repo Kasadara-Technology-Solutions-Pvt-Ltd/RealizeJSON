@@ -33,7 +33,7 @@ Do not advertise any host as supported until it is validated.
 | M2 MVP | Done (unvalidated in IDE) |
 | M3 Advanced (P1) | Done except FR-06 constant-initializer mode and Newtonsoft type-name polymorphism (deferred) |
 | M4 Hardening | Differential, security, lifecycle, performance (test host) done; IDE accessibility/compatibility validation blocked |
-| M5 Distribution | Docs, notices, listing draft, checklist done; VSIX artifact and license blocked |
+| M5 Distribution | Docs, notices, listing draft, checklist, license done; VSIX artifact blocked |
 
 ## Requirements
 
@@ -81,7 +81,7 @@ Do not advertise any host as supported until it is validated.
 | NFR-10 | Nullable, analyzers, formatting config, documented interfaces | Done | Warnings as errors; `.editorconfig` |
 | §2.2 | Brand identity, assets, palette, contrast | Done | `docs/BRAND.md`, `assets/branding/` |
 | §11 | VSIX with manifest, identifier, icon, metadata | Build configured; **artifact blocked** | `source.extension.vsixmanifest`, `build/inspect-vsix.ps1` |
-| §11 | License | **Pending owner decision** | `docs/LICENSE-RECOMMENDATION.md` |
+| §11 | License | Done | Apache-2.0 (`LICENSE`), included in the VSIX |
 
 ## Known gaps to address next
 

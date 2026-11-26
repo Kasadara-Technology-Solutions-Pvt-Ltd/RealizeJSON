@@ -1,7 +1,10 @@
 # Contributing to RealizeJSON
 
-Thank you for your interest. Until a license is chosen (see `docs/LICENSE-RECOMMENDATION.md`), external
-contributions cannot be accepted; issues and discussions are welcome.
+Thank you for your interest. RealizeJSON is licensed under the [Apache License 2.0](LICENSE). Contributions are
+accepted under the same license (Apache-2.0 section 5, inbound = outbound).
+
+Every commit must carry a Developer Certificate of Origin sign-off (`git commit -s`), certifying that you have the
+right to submit it under the project license (https://developercertificate.org/).
 
 ## Ground rules
 

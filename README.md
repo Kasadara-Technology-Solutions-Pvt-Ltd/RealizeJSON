@@ -107,8 +107,7 @@ the startup project in Visual Studio and pressing F5 (`devenv /rootsuffix Exp`).
 
 ## License
 
-The project license has **not yet been finalized** by the copyright holder; see
-[docs/LICENSE-RECOMMENDATION.md](docs/LICENSE-RECOMMENDATION.md). Until a `LICENSE` file is added, no license is
-granted. Third-party components are listed in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
+Licensed under the [Apache License 2.0](LICENSE). Third-party components are listed in
+[THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 
 RealizeJSON is a contribution of Kasadara Technology Solutions Private Limited to the developer community.
