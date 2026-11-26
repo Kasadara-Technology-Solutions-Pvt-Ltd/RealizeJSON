@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 128" width="600" height="128" role="img" aria-labelledby="t">
+  <title id="t">RealizeJSON horizontal wordmark (for dark backgrounds)</title>
+  <rect width="128" height="128" rx="28" fill="#142C4C"/>
+  <g fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M44 28 C32 28 32 36 32 46 L32 54 C32 60 28 64 22 64 C28 64 32 68 32 74 L32 82 C32 92 32 100 44 100"/>
+    <path d="M84 28 C96 28 96 36 96 46 L96 54 C96 60 100 64 106 64 C100 64 96 68 96 74 L96 82 C96 92 96 100 84 100"/>
+  </g>
+  <polygon points="70,22 48,70 62,70 56,106 80,56 66,56 76,22" fill="#38BDF8"/>
+  <text x="152" y="86" font-family="'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="64" font-weight="700" letter-spacing="-1"><tspan fill="#FFFFFF">Realize</tspan><tspan fill="#3089E8">JSON</tspan></text>
+</svg>

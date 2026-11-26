@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-labelledby="t">
+  <title id="t">RealizeJSON icon (small sizes)</title>
+  <rect width="32" height="32" rx="7" fill="#142C4C"/>
+  <g fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M11 7 C8 7 8 9 8 12 L8 14 C8 15.5 7 16 5.5 16 C7 16 8 16.5 8 18 L8 20 C8 23 8 25 11 25"/>
+    <path d="M21 7 C24 7 24 9 24 12 L24 14 C24 15.5 25 16 26.5 16 C25 16 24 16.5 24 18 L24 20 C24 23 24 25 21 25"/>
+  </g>
+  <polygon points="17.5,5 11.5,17.5 15.5,17.5 14,27 20.5,14 16.5,14 19.5,5" fill="#38BDF8"/>
+</svg>
