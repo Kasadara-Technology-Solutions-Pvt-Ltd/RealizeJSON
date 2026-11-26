@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>RealizeJSON diagnostic catalog, explanations and heuristics.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RealizeJSON.Core\RealizeJSON.Core.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>RealizeJSON shared serialization rule infrastructure and preview engine.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RealizeJSON.Core\RealizeJSON.Core.csproj" />
+    <ProjectReference Include="..\RealizeJSON.Diagnostics\RealizeJSON.Diagnostics.csproj" />
+    <ProjectReference Include="..\RealizeJSON.CodeAnalysis\RealizeJSON.CodeAnalysis.csproj" />
+    <ProjectReference Include="..\RealizeJSON.SampleData\RealizeJSON.SampleData.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="$(RoslynVersion)" />
+  </ItemGroup>
+</Project>

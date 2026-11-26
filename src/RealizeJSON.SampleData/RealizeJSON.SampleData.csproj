@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>RealizeJSON deterministic sample value generation and JSON emission.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RealizeJSON.Core\RealizeJSON.Core.csproj" />
+    <ProjectReference Include="..\RealizeJSON.Diagnostics\RealizeJSON.Diagnostics.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>RealizeJSON Roslyn semantic analysis: type selection, symbol helpers and configuration detection.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RealizeJSON.Core\RealizeJSON.Core.csproj" />
+    <ProjectReference Include="..\RealizeJSON.Diagnostics\RealizeJSON.Diagnostics.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Roslyn is provided by Visual Studio at runtime; the VSIX must not ship it. -->
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="$(RoslynVersion)" />
+  </ItemGroup>
+</Project>

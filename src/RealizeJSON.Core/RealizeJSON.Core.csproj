@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>RealizeJSON.Core</RootNamespace>
+    <Description>RealizeJSON contracts, options and host-independent abstractions.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="RealizeJSON.Core.Tests" />
+  </ItemGroup>
+</Project>
