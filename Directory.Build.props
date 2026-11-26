@@ -15,7 +15,7 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
-    <RoslynVersion>4.8.0</RoslynVersion>
+    <RoslynVersion>5.12.0</RoslynVersion>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' or '$(TargetFramework)' == 'net472'">
     <Compile Include="$(MSBuildThisFileDirectory)build/Polyfills.cs" Link="Properties/Polyfills.cs" Visible="false" />
