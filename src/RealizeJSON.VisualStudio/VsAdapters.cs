@@ -139,6 +139,7 @@ internal sealed class VsHostServices : IHostServices
 
     public void WriteAllText(string path, string text)
     {
+        ThreadHelper.ThrowIfNotOnUIThread();
         try
         {
             File.WriteAllText(path, text, new System.Text.UTF8Encoding(encoderShouldEmitUTF8Identifier: false));

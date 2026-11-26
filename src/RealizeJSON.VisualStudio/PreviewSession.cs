@@ -22,6 +22,7 @@ internal sealed class PreviewSession : IDisposable
     private UserSettings _userSettings;
     private UserSettings _effectiveSettings;
     private string? _solutionPath;
+    private string? _solutionProfileJson;
     private bool _disposed;
 
     public PreviewSession(ToolWindowServices services)
@@ -83,16 +84,11 @@ internal sealed class PreviewSession : IDisposable
     private void LoadSolutionProfile(string? solutionPath)
     {
         _solutionPath = solutionPath;
-        if (solutionPath is null)
-        {
-            return;
-        }
-
-        var file = Path.Combine(Path.GetDirectoryName(solutionPath) ?? string.Empty, SolutionProfile.FileName);
         string? json = null;
+        var file = solutionPath is null ? null : Path.Combine(Path.GetDirectoryName(solutionPath) ?? string.Empty, SolutionProfile.FileName);
         try
         {
-            if (File.Exists(file) && new FileInfo(file).Length < 64 * 1024)
+            if (file is not null && File.Exists(file) && new FileInfo(file).Length < 64 * 1024)
             {
                 json = File.ReadAllText(file);
             }
@@ -102,6 +98,7 @@ internal sealed class PreviewSession : IDisposable
             json = null;
         }
 
+        _solutionProfileJson = json;
         var (applied, _) = SolutionProfile.Apply(_userSettings, json);
         _effectiveSettings = applied;
         var hasSolutionProfile = json is not null;
@@ -120,7 +117,10 @@ internal sealed class PreviewSession : IDisposable
     private void OnOptionsSaved(object? sender, UserSettings settings)
     {
         _userSettings = settings;
-        ViewModel.ApplySettings(settings);
+        var (applied, _) = SolutionProfile.Apply(settings, _solutionProfileJson);
+        ViewModel.PersistChanges = false;
+        ViewModel.ApplySettings(applied);
+        ViewModel.PersistChanges = _solutionProfileJson is null;
     }
 
     private void OnActiveViewChanged(object? sender, EventArgs e) => _coordinator.OnActiveDocumentChanged();
@@ -136,6 +136,7 @@ internal sealed class PreviewSession : IDisposable
         {
             case WorkspaceChangeKind.SolutionCleared:
             case WorkspaceChangeKind.SolutionRemoved:
+                LoadSolutionProfile(null);
                 _coordinator.OnSolutionClosed();
                 break;
             case WorkspaceChangeKind.SolutionAdded:

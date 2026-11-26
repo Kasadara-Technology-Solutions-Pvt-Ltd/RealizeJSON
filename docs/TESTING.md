@@ -81,7 +81,7 @@ version must pass all steps before release.
 | 13 | Contract Inspector: double-click a member; metadata member | Navigates to declaration; message for metadata |
 | 14 | Dock/undock/float/auto-hide the window; hide and show it | No errors; hidden window does not analyze |
 | 15 | Switch Light/Dark/Blue/High Contrast themes | All text readable; JSON colors follow editor theme |
-| 16 | Keyboard only: Tab through toolbar, tabs, grids; F5; Enter on a JSON line | All controls reachable; screen reader announces names and state |
+| 16 | Keyboard only: Tab through toolbar, tabs, grids; access keys (Alt+letter); Enter on a JSON line | All controls reachable; screen reader announces names and state |
 | 17 | 150%/200% DPI, narrow pane (250 px) | Toolbar wraps; no clipped controls |
 | 18 | Close the document; close and reopen the solution | No exceptions; empty state after close |
 | 19 | Open a non-C# file | *Unsupported* state |

@@ -120,6 +120,14 @@ public sealed class OptionsPage : DialogPage
     [DisplayName("Maximum output size (bytes)")]
     public int MaxBytes { get; set; } = 256 * 1024;
 
+    /// <summary>Reload on every activation so values changed from the tool window are not overwritten.</summary>
+    protected override void OnActivate(CancelEventArgs e)
+    {
+        ThreadHelper.ThrowIfNotOnUIThread();
+        LoadSettingsFromStorage();
+        base.OnActivate(e);
+    }
+
     public override void LoadSettingsFromStorage()
     {
         ThreadHelper.ThrowIfNotOnUIThread();
@@ -212,6 +220,9 @@ public sealed class OptionsPage : DialogPage
         };
         store.Write(SettingsSerializer.StoreKey, SettingsSerializer.ToJson(settings));
         SettingsSaved?.Invoke(this, settings);
+
+        // Show the normalized (clamped) values that were actually stored.
+        LoadSettingsFromStorage();
     }
 
     private static NamingOption ToOption(NamingPolicyKind? value) => value is null ? NamingOption.ProfileDefault : (NamingOption)((int)value.Value + 1);

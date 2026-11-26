@@ -31,6 +31,7 @@ internal sealed class PreviewControl : UserControl
 
     public PreviewControl(PreviewSession session, ToolWindowServices services)
     {
+        ThreadHelper.ThrowIfNotOnUIThread();
         _session = session;
         _vm = session.ViewModel;
         _formatMap = services.FormatMaps.GetClassificationFormatMap("text");
@@ -50,9 +51,6 @@ internal sealed class PreviewControl : UserControl
         root.Children.Add(status);
         root.Children.Add(CreateTabs());
         Content = root;
-
-        InputBindings.Add(new KeyBinding(_vm.RefreshCommand, Key.F5, ModifierKeys.None));
-        InputBindings.Add(new KeyBinding(_vm.CopyCommand, Key.C, ModifierKeys.Control | ModifierKeys.Shift));
 
         _vm.PropertyChanged += OnViewModelChanged;
         _formatMap.ClassificationFormatMappingChanged += OnFormatMappingChanged;
@@ -83,6 +81,7 @@ internal sealed class PreviewControl : UserControl
 
     private UIElement CreateHeader()
     {
+        ThreadHelper.ThrowIfNotOnUIThread();
         var panel = new StackPanel { Margin = new Thickness(6, 4, 6, 2) };
 
         var titleRow = new DockPanel { LastChildFill = true };
@@ -90,7 +89,7 @@ internal sealed class PreviewControl : UserControl
         DockPanel.SetDock(actions, Dock.Right);
         actions.Children.Add(StateIndicator());
         actions.Children.Add(Toggle("_Pin", "Pin the selected type (keeps it while navigating)", nameof(PreviewViewModel.IsPinned), _vm.PinCommand));
-        actions.Children.Add(Button("_Copy", "Copy JSON (Ctrl+Shift+C)", _vm.CopyCommand));
+        actions.Children.Add(Button("_Copy", "Copy the whole JSON preview", _vm.CopyCommand));
         titleRow.Children.Add(actions);
         var type = new TextBlock { FontWeight = FontWeights.SemiBold, VerticalAlignment = VerticalAlignment.Center, TextTrimming = TextTrimming.CharacterEllipsis, Margin = new Thickness(0, 0, 6, 0) };
         type.SetBinding(TextBlock.TextProperty, new Binding(nameof(PreviewViewModel.SelectedTypeDisplay)));
@@ -120,9 +119,13 @@ internal sealed class PreviewControl : UserControl
         row2.Children.Add(Check("_Enum strings", nameof(PreviewViewModel.EnumsAsStrings), "Write enums as strings (JsonStringEnumConverter / StringEnumConverter)"));
         row2.Children.Add(Check("_Formatted", nameof(PreviewViewModel.IsFormatted), "Formatted (indented) or compact output"));
         row2.Children.Add(Check("_Wrap", nameof(PreviewViewModel.WordWrap), "Wrap long lines"));
-        row2.Children.Add(Button("Re_fresh", "Refresh now (F5)", _vm.RefreshCommand));
+        row2.Children.Add(Button("Re_fresh", "Refresh now", _vm.RefreshCommand));
         row2.Children.Add(Button("E_xport…", "Export the preview as a .json file", _vm.ExportCommand));
-        var saveProfile = Button("Save solution profile…", "Write the current profile to .realizejson.json next to the solution", new RelayCommand(_ => _session.SaveSolutionProfile()));
+        var saveProfile = Button("Save solution profile…", "Write the current profile to .realizejson.json next to the solution", new RelayCommand(_ =>
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+            _session.SaveSolutionProfile();
+        }));
         row2.Children.Add(saveProfile);
         panel.Children.Add(row2);
 

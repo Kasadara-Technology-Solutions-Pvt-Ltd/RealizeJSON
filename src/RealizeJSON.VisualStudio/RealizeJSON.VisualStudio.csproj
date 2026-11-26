@@ -17,7 +17,6 @@
     <!-- The VSIX is produced only where the VSSDK build tasks can run (Windows / Visual Studio MSBuild). -->
     <RealizeJsonCanBuildVsix Condition="'$(OS)' == 'Windows_NT'">true</RealizeJsonCanBuildVsix>
     <DeployExtension Condition="'$(RealizeJsonCanBuildVsix)' != 'true' or '$(CI)' == 'true' or '$(GITHUB_ACTIONS)' == 'true'">false</DeployExtension>
-    <NoWarn>$(NoWarn);VSTHRD010</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
