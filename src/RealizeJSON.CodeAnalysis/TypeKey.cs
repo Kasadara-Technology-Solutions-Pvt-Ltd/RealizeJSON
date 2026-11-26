@@ -164,25 +164,126 @@ public sealed class TypeKey : IEquatable<TypeKey>
         return current!;
     }
 
+    /// <summary>
+    /// Serialized form: <c>#rank:element</c> for arrays, otherwise
+    /// <c>Metadata.Name`1[[arg],[arg]]@Assembly</c>. Unambiguous and parseable with <see cref="Parse"/>.
+    /// </summary>
     public override string ToString()
     {
         if (Element is not null)
         {
-            return Element + "[" + new string(',', ArrayRank - 1) + "]";
+            return "#" + ArrayRank.ToString(System.Globalization.CultureInfo.InvariantCulture) + ":" + Element;
         }
 
         var sb = new StringBuilder(MetadataName);
         if (TypeArguments.Count > 0)
         {
-            sb.Append('[').Append(string.Join(",", TypeArguments.Select(a => a.ToString()))).Append(']');
+            sb.Append('[').Append(string.Join(",", TypeArguments.Select(a => "[" + a + "]"))).Append(']');
         }
 
         if (AssemblyName is not null)
         {
-            sb.Append(", ").Append(AssemblyName);
+            sb.Append('@').Append(AssemblyName);
         }
 
         return sb.ToString();
+    }
+
+    /// <summary>Parses the output of <see cref="ToString"/>; returns null for malformed input.</summary>
+    public static TypeKey? Parse(string text)
+    {
+        if (string.IsNullOrEmpty(text) || text.Length > 4096)
+        {
+            return null;
+        }
+
+        var position = 0;
+        var key = ParseKey(text, ref position, 0);
+        return key is not null && position == text.Length ? key : null;
+    }
+
+    private static TypeKey? ParseKey(string text, ref int position, int depth)
+    {
+        if (depth > 32 || position >= text.Length)
+        {
+            return null;
+        }
+
+        if (text[position] == '#')
+        {
+            var colon = text.IndexOf(':', position);
+            if (colon < 0 || !int.TryParse(text.Substring(position + 1, colon - position - 1), System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var rank) || rank < 1)
+            {
+                return null;
+            }
+
+            position = colon + 1;
+            var element = ParseKey(text, ref position, depth + 1);
+            return element is null ? null : new TypeKey(string.Empty, null, Array.Empty<TypeKey>(), rank, element);
+        }
+
+        var start = position;
+        while (position < text.Length && text[position] != '[' && text[position] != '@' && text[position] != ']' && text[position] != ',')
+        {
+            position++;
+        }
+
+        var name = text.Substring(start, position - start);
+        if (name.Length == 0)
+        {
+            return null;
+        }
+
+        var args = new List<TypeKey>();
+        if (position < text.Length && text[position] == '[')
+        {
+            position++;
+            while (true)
+            {
+                if (position >= text.Length || text[position] != '[')
+                {
+                    return null;
+                }
+
+                position++;
+                var arg = ParseKey(text, ref position, depth + 1);
+                if (arg is null || position >= text.Length || text[position] != ']')
+                {
+                    return null;
+                }
+
+                position++;
+                args.Add(arg);
+                if (position < text.Length && text[position] == ',')
+                {
+                    position++;
+                    continue;
+                }
+
+                if (position < text.Length && text[position] == ']')
+                {
+                    position++;
+                    break;
+                }
+
+                return null;
+            }
+        }
+
+        string? assembly = null;
+        if (position < text.Length && text[position] == '@')
+        {
+            var end = position + 1;
+            while (end < text.Length && text[end] != ']' && text[end] != ',')
+            {
+                end++;
+            }
+
+            assembly = text.Substring(position + 1, end - position - 1);
+            position = end;
+        }
+
+        return new TypeKey(name, assembly, args, 0, null);
     }
 
     public bool Equals(TypeKey? other) => other is not null && string.Equals(ToString(), other.ToString(), StringComparison.Ordinal);

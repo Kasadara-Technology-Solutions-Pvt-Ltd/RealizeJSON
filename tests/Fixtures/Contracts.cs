@@ -375,6 +375,32 @@ namespace Fixtures
         public int[,] Grid { get; set; } = new int[0, 0];
     }
 
+    public class BadKeys
+    {
+        public Dictionary<Address, int> ByAddress { get; set; } = new();
+    }
+
+    public class WithConstructor
+    {
+        [JsonConstructor]
+        [N.JsonConstructor]
+        public WithConstructor(int id) { Id = id; }
+
+        public int Id { get; }
+    }
+
+    public class SensitiveData
+    {
+        public string UserName { get; set; } = "";
+        public string ApiKey { get; set; } = "";
+        public string Shipping { get; set; } = "";
+    }
+
+    public class EscapingSamples
+    {
+        public string Text { get; set; } = "";
+    }
+
     public class DuplicateNames
     {
         [JsonPropertyName("value")] public int A { get; set; }

@@ -25,20 +25,13 @@ public enum ConfigurationMode
 }
 
 /// <summary>Input of one preview analysis.</summary>
-public sealed class PreviewRequest
+public sealed record PreviewRequest(Document Document, int Position)
 {
-    public PreviewRequest(Document document, int position)
-    {
-        Document = document;
-        Position = position;
-    }
-
-    public Document Document { get; }
-
-    public int Position { get; }
-
     /// <summary>Pinned type; when set, the caret position is ignored.</summary>
     public TypeKey? PinnedType { get; init; }
+
+    /// <summary>Pinned type as a <see cref="TypeKey"/> string (resolved by matching candidates or parsing).</summary>
+    public string? PinnedTypeKeyText { get; init; }
 
     /// <summary>Explicitly selected candidate key (from the type selector).</summary>
     public string? SelectedCandidateKey { get; init; }
@@ -112,6 +105,19 @@ public sealed class PreviewEngine
                 return PreviewResult.Empty(PreviewState.Unsupported, DiagnosticCatalog.Create(DiagnosticIds.UnresolvedSymbol, null, null, request.PinnedType.MetadataName)) with
                 {
                     SourceHasErrors = syntaxErrors > 0,
+                };
+            }
+        }
+        else if (request.PinnedTypeKeyText is not null)
+        {
+            selected = location.Candidates.FirstOrDefault(c => c.Key?.ToString() == request.PinnedTypeKeyText)?.Symbol
+                ?? TypeKey.Parse(request.PinnedTypeKeyText)?.Resolve(compilation);
+            if (selected is null)
+            {
+                return PreviewResult.Empty(PreviewState.Unsupported, DiagnosticCatalog.Create(DiagnosticIds.UnresolvedSymbol, null, null, request.PinnedTypeKeyText)) with
+                {
+                    SourceHasErrors = syntaxErrors > 0,
+                    SelectedTypeKey = request.PinnedTypeKeyText,
                 };
             }
         }

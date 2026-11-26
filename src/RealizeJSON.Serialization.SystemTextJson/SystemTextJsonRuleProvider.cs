@@ -381,7 +381,7 @@ public sealed class SystemTextJsonRuleProvider : IRuleProvider
                 member.Contract = Resolve(candidate.Type, enumStyle);
                 if (member.Contract.Classification > Classification.Resolved)
                 {
-                    member.Downgrade(member.Contract.Classification == Classification.Unsupported ? Classification.Unsupported : Classification.Estimated);
+                    member.Downgrade(member.Contract.Classification);
                 }
             }
 

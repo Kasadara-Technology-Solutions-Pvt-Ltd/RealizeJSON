@@ -120,7 +120,7 @@ public sealed class JsonConfigurationDetector
                 continue;
             }
 
-            var lambda = invocation.ArgumentList.Arguments.Select(a => a.Expression).OfType<LambdaExpressionSyntax>().FirstOrDefault();
+            var lambda = invocation.ArgumentList.Arguments.SelectMany(a => a.Expression.DescendantNodesAndSelf().OfType<LambdaExpressionSyntax>()).FirstOrDefault();
             var builder = new SettingsBuilder(serializer.Value);
             if (lambda is not null)
             {
