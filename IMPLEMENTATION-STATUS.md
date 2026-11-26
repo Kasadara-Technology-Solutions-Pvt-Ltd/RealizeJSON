@@ -19,7 +19,7 @@ with impact noted; **Blocked** = cannot be completed in the current environment.
 |---|---|---|
 | Visual Studio 2022 17.8+ x64 | Yes (`[17.8,)`, amd64) | **No** |
 | Visual Studio 2022 17.8+ Arm64 | Yes (arm64) | **No** |
-| Visual Studio 2026 | Yes (lower-bound compatibility) | **No**. 0.1.1 installed (18.0); the tool window failed to open (fixed in 0.1.2, not yet re-tested) |
+| Visual Studio 2026 | Yes (lower-bound compatibility) | **No**. On 18.0, 0.1.1 installed but its tool window failed to open; the 0.1.2 CI build fixes that (window opens). Remaining validation steps not yet run |
 | Visual Studio 2019 and earlier, VS Code, VS for Mac | No | n/a |
 
 Do not advertise any host as supported until it is validated.
