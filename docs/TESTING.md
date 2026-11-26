@@ -10,7 +10,8 @@ pwsh ./build/build.ps1
 pwsh ./build/test.ps1 -NoBuild
 ```
 
-TRX results are written to `artifacts/test-results/`. Plain `dotnet test RealizeJSON.sln` works as well.
+TRX results are written to `artifacts/test-results/`. Tests run on Microsoft.Testing.Platform (opted in through
+`global.json`), so plain `dotnet test --solution RealizeJSON.sln` works as well.
 
 ## Suites
 
