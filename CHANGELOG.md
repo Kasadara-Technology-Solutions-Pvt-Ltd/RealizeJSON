@@ -5,6 +5,18 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-11-26
+
+### Fixed
+
+- The RealizeJSON tool window failed to open ("An exception was encountered while constructing the content of this
+  frame"): the Visual Studio button style was applied to the *Pin* toggle, whose type does not match the style. *Pin*
+  is now a themed check box. Found on the first installation in Visual Studio 2026 (18.0).
+
+### Known limitations
+
+- The rest of the in-IDE behavior has not been validated yet. See `IMPLEMENTATION-STATUS.md`.
+
 ## [0.1.1] - 2026-11-26
 
 ### Changed
@@ -50,6 +62,7 @@ All notable changes to this project are documented here. The format follows
 - Installation and in-IDE behavior (the VSIX is built and content-verified by CI, but has not been installed in
   Visual Studio yet). See `IMPLEMENTATION-STATUS.md`.
 
-[Unreleased]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases/tag/v0.1.2
 [0.1.1]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases/tag/v0.1.1
 [0.1.0]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases/tag/v0.1.0
