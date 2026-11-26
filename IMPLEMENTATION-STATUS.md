@@ -11,15 +11,15 @@ with impact noted; **Blocked** = cannot be completed in the current environment.
 | Development environment | Linux x64 container, .NET SDK 10.0.115, PowerShell 7.7, no Windows, no Visual Studio |
 | GitHub | Resolved 2026-11-26: branch pushed, PR #1 open against `main`. |
 | VSIX packaging | Done in CI (`windows-latest`, full MSBuild, VSSDK BuildTools 17.14.2142): `RealizeJSON-vsix` artifact built and verified by `build/inspect-vsix.ps1`. 0.1.1 installs in Visual Studio 2026 (18.0). |
-| IDE validation | **Blocked** (no Visual Studio). Manual procedure: `docs/TESTING.md` § IDE integration validation. |
+| IDE validation | **Partial**, performed by the maintainer: 0.1.2 on Visual Studio 2026 (18.0) passed steps 1, 3, 4, 5, 6, 8, 10, 11, 12, 15. Other steps and other hosts not run. Results: `docs/TESTING.md` § IDE integration validation. |
 
 ## Compatibility matrix
 
 | Host | Installable per manifest | Validated |
 |---|---|---|
-| Visual Studio 2022 17.8+ x64 | Yes (`[17.8,)`, amd64) | **No** |
-| Visual Studio 2022 17.8+ Arm64 | Yes (arm64) | **No** |
-| Visual Studio 2026 | Yes (lower-bound compatibility) | **No**. On 18.0, 0.1.1 installed but its tool window failed to open; the 0.1.2 CI build fixes that (window opens). Remaining validation steps not yet run |
+| Visual Studio 2022 17.8+ x64 | No from 1.0.0 (ADR-011) | **No** |
+| Visual Studio 2022/2026 Arm64 | No from 1.0.0 (ADR-011) | **No** |
+| Visual Studio 2026 x64 | Yes (`[18.0,)`, amd64) | **Partial**: 0.1.2 on 18.0 passed steps 1, 3, 4, 5, 6, 8, 10, 11, 12, 15 (0.1.1's tool window failed to open; fixed in 0.1.2) |
 | Visual Studio 2019 and earlier, VS Code, VS for Mac | No | n/a |
 
 Do not advertise any host as supported until it is validated.
@@ -33,7 +33,7 @@ Do not advertise any host as supported until it is validated.
 | M2 MVP | Done (unvalidated in IDE) |
 | M3 Advanced (P1) | Done except FR-06 constant-initializer mode and Newtonsoft type-name polymorphism (deferred) |
 | M4 Hardening | Differential, security, lifecycle, performance (test host) done; IDE accessibility/compatibility validation blocked |
-| M5 Distribution | Docs, notices, listing draft, checklist, license and CI-built VSIX done; install/IDE validation pending |
+| M5 Distribution | Docs, notices, listing draft, checklist, license, releases 0.1.0–0.1.2 and 1.0.0 done; IDE validation partial (VS 2026 18.0) |
 
 ## Requirements
 
@@ -75,16 +75,16 @@ Do not advertise any host as supported until it is validated.
 | NFR-04 | p95 < 500 ms (100-member graph) | Met in test host (p95 11.2 ms); **in-IDE measurement pending** | `docs/TESTING.md` |
 | NFR-05 | Bounded output, recursion, caches, concurrency | Done | `docs/ARCHITECTURE.md` § Bounds; memory not measured |
 | NFR-06 | Cancellation, fault isolation, last-good preview | Done | Coordinator tests |
-| NFR-07 | Accessibility, keyboard, theme/high contrast, high DPI | Implemented (automation names, live regions, access keys, theme keys); **validation blocked** | IDE validation steps 15–17 |
+| NFR-07 | Accessibility, keyboard, theme/high contrast, high DPI | Implemented (automation names, live regions, access keys, theme keys); Light/Dark themes validated on VS 2026 (step 15, high contrast not run); keyboard and DPI **not validated** | IDE validation steps 15–17 |
 | NFR-08 | No telemetry; logs without source text | Done | ADR-009; ActivityLog only |
 | NFR-09 | Minimal dependencies, notices, inventory, reproducible builds | Done | `THIRD-PARTY-NOTICES.md`, `docs/DECISIONS.md`; deterministic builds |
 | NFR-10 | Nullable, analyzers, formatting config, documented interfaces | Done | Warnings as errors; `.editorconfig` |
 | §2.2 | Brand identity, assets, palette, contrast | Done | `docs/BRAND.md`, `assets/branding/` |
-| §11 | VSIX with manifest, identifier, icon, metadata | Done (CI artifact; install unvalidated) | `source.extension.vsixmanifest`, `build/inspect-vsix.ps1` |
+| §11 | VSIX with manifest, identifier, icon, metadata | Done (installs on VS 2026 18.0) | `source.extension.vsixmanifest`, `build/inspect-vsix.ps1` |
 | §11 | License | Done | Apache-2.0 (`LICENSE`), included in the VSIX |
 
 ## Known gaps to address next
 
-2. Execute the IDE validation procedure on VS 2022 17.8, latest VS 2022 and VS 2026; capture screenshots.
+2. Finish the IDE validation procedure: remaining steps on VS 2026; validate VS 2022 and Arm64 before widening the installation targets; capture screenshots.
 3. FR-06 constant-initializer inference (P1) and Newtonsoft `TypeNameHandling` previews (P1, opt-in only).
 4. Measure in-IDE latency and memory across solution switches.

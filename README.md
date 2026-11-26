@@ -22,8 +22,8 @@ source with Roslyn and applies the real member, naming and attribute rules of **
 |---|---|
 | Core engine (Roslyn analysis, contracts, both serializers, sample generation) | Implemented, 630+ automated tests |
 | Differential accuracy vs. real serializers | 433 scenario tests match System.Text.Json (.NET 10) and Newtonsoft.Json 13.0.4 byte-for-byte |
-| Visual Studio host (tool window, commands, live events) | Implemented; compiles against the VS 2022 17.8 SDK. **Not yet validated in a running IDE** |
-| VSIX package | Built and content-verified by CI on `windows-latest` (artifact `RealizeJSON-vsix`); **not yet installed in an IDE** — see [IMPLEMENTATION-STATUS.md](IMPLEMENTATION-STATUS.md) |
+| Visual Studio host (tool window, commands, live events) | Implemented; validated on Visual Studio 2026 (18.0), see [docs/TESTING.md](docs/TESTING.md) |
+| VSIX package | Built and content-verified by CI on `windows-latest`; published on [GitHub Releases](https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases) |
 
 See [IMPLEMENTATION-STATUS.md](IMPLEMENTATION-STATUS.md) for the requirement-by-requirement status and blockers.
 
@@ -59,7 +59,7 @@ See [IMPLEMENTATION-STATUS.md](IMPLEMENTATION-STATUS.md) for the requirement-by-
 
 | Item | Requirement |
 |---|---|
-| IDE | Visual Studio 2022 (17.8 or later) on Windows, x64 or Arm64. Visual Studio 2026 accepts VS 2022 extensions, but RealizeJSON has **not** been validated there yet. |
+| IDE | Visual Studio 2026 (version 18.0 or later) on Windows x64. Visual Studio 2022 and Arm64 are not supported until validated (ADR-011). |
 | Workload | C# language services (installed with any .NET workload) |
 | Build (contributors) | .NET SDK 10.0.100+ (`global.json`); for the VSIX: Windows with Visual Studio 2022+ or Build Tools and the *Visual Studio extension development* workload |
 

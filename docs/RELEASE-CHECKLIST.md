@@ -5,8 +5,11 @@
 - [x] **GitHub access**: branch pushed; CI runs on push and pull requests.
 - [x] **License**: Apache-2.0 `LICENSE` added and referenced by the VSIX manifest; `NOTICE` added; both packaged in the VSIX.
 - [x] **VSIX build** succeeds on `windows-latest` (CI job `vsix`) and `build/inspect-vsix.ps1` passes.
-- [ ] **IDE validation**: every step in `docs/TESTING.md` § IDE integration validation passes on VS 2022 17.8 (oldest),
-      latest VS 2022, VS 2022 Arm64 (if advertised) and VS 2026 (if advertised). Update the compatibility matrix.
+- [ ] **IDE validation**: every step in `docs/TESTING.md` § IDE integration validation passes on every host in the
+      manifest's installation targets. Update the compatibility matrix.
+      Progress: 0.1.2 on VS 2026 (18.0) passed steps 1, 3, 4, 5, 6, 8, 10, 11, 12, 15; see `docs/TESTING.md`.
+      1.0.0 was released by the maintainer's decision with the remaining steps open and the targets narrowed to
+      VS 2026 x64 (ADR-011).
 - [x] **Marketplace publisher** `kasadara` created; `src/RealizeJSON.VisualStudio/publishManifest.json` prepared (no secrets committed).
 - [ ] **Trademark/domain** clearance for "RealizeJSON" (not verified).
 - [ ] Screenshots captured from the validated build.

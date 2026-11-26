@@ -60,14 +60,19 @@ each with a new text snapshot (as a keystroke would produce).
 This is measured in the test host, **not** inside Visual Studio (.NET Framework, `VisualStudioWorkspace`, larger
 solutions). In-IDE measurement remains a manual validation step. Memory was not measured.
 
-## IDE integration validation (manual — not yet performed)
+## IDE integration validation (manual)
 
-No Windows or Visual Studio environment was available, so none of the following has been executed. Each advertised IDE
-version must pass all steps before release.
+Each advertised IDE version must pass all steps before release.
+
+| Date | Build | Host | Passed | Not run | Notes |
+|---|---|---|---|---|---|
+| 2026-11-26 | 0.1.1 | Visual Studio 2026 (18.0) | 1 | All others | Step 3 failed: the tool window threw while being constructed (style `TargetType` mismatch on *Pin*); fixed in 0.1.2 |
+| 2026-11-26 | 0.1.2 | Visual Studio 2026 (18.0) | 1, 3, 4, 5, 6, 8, 10, 11, 12, 15 | 2, 7, 9, 13, 14, 16–22 | Step 15 covered Light and Dark themes; high contrast not checked. Performed by the maintainer |
+
 
 | # | Step | Expected |
 |---|---|---|
-| 1 | Install the VSIX via VSIXInstaller (VS 2022 17.8+, x64; VS 2022 Arm64; VS 2026) | Installs without warnings; appears in *Extensions › Manage Extensions* |
+| 1 | Install the VSIX via VSIXInstaller (each host in the manifest's installation targets; from 1.0.0: VS 2026 x64) | Installs without warnings; appears in *Extensions › Manage Extensions* |
 | 2 | Start VS; check *Help › About* and ActivityLog | Package not loaded until first use |
 | 3 | *View › Other Windows › RealizeJSON* | Window opens docked next to Solution Explorer; caption and icon correct |
 | 4 | Open the acceptance `CustomerDTO`; place caret in the class | Preview matches `README` example with Web defaults; Password excluded |

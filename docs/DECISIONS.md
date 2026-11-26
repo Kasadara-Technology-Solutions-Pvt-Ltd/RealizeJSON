@@ -20,7 +20,7 @@ was not verified with a prototype because no Windows/Visual Studio environment w
 **Rejected.** VisualStudio.Extensibility out-of-process (no verified Roslyn access); mixed in-proc/out-of-proc
 (complexity without benefit).
 
-## ADR-002 — Compile against VS 2022 17.8 / Roslyn 4.8; target `[17.8,)`
+## ADR-002 — Compile against VS 2022 17.8 / Roslyn 4.8; target `[17.8,)` (targets superseded by ADR-011)
 
 **Decision.** Reference `Microsoft.VisualStudio.SDK 17.8.37222` and Roslyn `4.8.0` with `ExcludeAssets="runtime"`;
 manifest `InstallationTarget Version="[17.8,)"` for amd64 and arm64.
@@ -86,6 +86,18 @@ to the local Visual Studio ActivityLog without source text.
 The repository owner added the Apache License 2.0. It is referenced by the VSIX manifest and shipped in the VSIX.
 Contributions are inbound = outbound under Apache-2.0 with a DCO sign-off (the repository requires sign-off for web
 commits).
+
+## ADR-011 — 1.0.0 installs only on validated hosts
+
+**Status:** Accepted (1.0.0).
+
+**Decision.** From 1.0.0 the manifest targets Visual Studio 2026 x64 only (`[18.0,)`, amd64), and the VSIX is no
+longer marked as preview. The compile-time references stay at VS 2022 17.8 / Roslyn 4.8 (ADR-002).
+
+**Rationale.** Only Visual Studio 2026 (18.0) x64 has been validated in a running IDE (`docs/TESTING.md`). A
+production release should not install where it has never run. VS 2022 and Arm64 are re-added as installation targets
+after they pass validation; no code change is expected for that. `build/inspect-vsix.ps1` rejects a manifest that
+still targets 17.x, Arm64 or preview.
 
 ## Dependency versions
 
