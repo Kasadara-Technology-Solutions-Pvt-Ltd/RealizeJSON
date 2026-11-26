@@ -1,6 +1,6 @@
 # Visual Studio Marketplace listing (draft — not published)
 
-> Publishing requires separate authorization, a confirmed Marketplace publisher ID, screenshots
+> Publishing requires separate authorization, screenshots
 > from a validated build and completion of the release checklist. Nothing here has been submitted.
 
 ## Metadata
@@ -8,7 +8,7 @@
 | Field | Value |
 |---|---|
 | Display name | RealizeJSON - Live JSON Serialization Preview |
-| Publisher ID | *To be created/confirmed by the copyright holder* |
+| Publisher | `kasadara`: Kasadara Technology Solutions Pvt Ltd |
 | Categories | Coding; Other |
 | Tags | json, serialization, System.Text.Json, Newtonsoft.Json, Roslyn, DTO, API, contract |
 | Icon | `assets/branding/png/realizejson-128.png` |
@@ -56,13 +56,13 @@ choose *Save solution profile*, in a `.realizejson.json` file in your solution f
 
 None yet. Screenshots must come from a validated build running in Visual Studio (do not use mock-ups).
 
-## Publisher profile (draft — not created)
+## Publisher profile
 
-The Marketplace publisher profile represents Kasadara Technology Solutions Private Limited, not RealizeJSON. Only
-facts known for certain are stated; bracketed items are for the company to fill in or remove. The publisher ID has not
-been reserved, and current Marketplace field names and length limits have not been re-verified.
+The publisher was created on 2026-11-26: ID `kasadara`, display name **Kasadara Technology Solutions Pvt Ltd**. The
+text below is the suggested profile content; bracketed items are for the company to fill in or remove. Current
+Marketplace field length limits have not been re-verified.
 
-**Display name:** Kasadara Technology Solutions
+**Display name:** Kasadara Technology Solutions Pvt Ltd
 
 **Short description:**
 
@@ -85,7 +85,7 @@ been reserved, and current Marketplace field names and length limits have not be
 
 | Field | Value |
 |---|---|
-| Publisher ID | To be chosen, e.g. `kasadara`. Permanent and must be unique; availability not checked. |
+| Publisher ID | `kasadara` (created) |
 | Logo | Kasadara company logo (not the RealizeJSON icon). |
 | Company website | [Company website, if public] |
 | Support | https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/issues or a support email |

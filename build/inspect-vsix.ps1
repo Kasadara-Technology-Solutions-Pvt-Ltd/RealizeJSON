@@ -35,7 +35,7 @@ try {
     $reader = [System.IO.StreamReader]::new($manifestEntry.Open())
     $manifest = $reader.ReadToEnd()
     $reader.Dispose()
-    foreach ($needle in @('RealizeJSON - Live JSON Serialization Preview', 'Microsoft.VisualStudio.Community', '[17.8,)', 'RealizeJSON-128.png', '<License>LICENSE</License>')) {
+    foreach ($needle in @('RealizeJSON - Live JSON Serialization Preview', 'Microsoft.VisualStudio.Community', '[17.8,)', 'RealizeJSON-128.png', '<License>LICENSE</License>', 'Publisher="Kasadara Technology Solutions Pvt Ltd"', '<Preview>true</Preview>')) {
         if (-not $manifest.Contains($needle)) { throw "Manifest is missing '$needle'." }
     }
 
