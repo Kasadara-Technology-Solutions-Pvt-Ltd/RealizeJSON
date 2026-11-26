@@ -1,10 +1,18 @@
 name: Release
 
 # Publishes a GitHub Release when a version tag (v1.2.3 or v1.2.3-preview.1) is pushed.
-# Manual runs build and verify the release artifacts without publishing (dry run).
+# Manual runs, and pull requests that touch the release inputs, build and verify the release artifacts without
+# publishing (dry run): the publish job only runs for tags.
 on:
   push:
     tags: [ 'v*.*.*' ]
+  pull_request:
+    paths:
+      - '.github/workflows/release.yml'
+      - 'build/**'
+      - 'src/RealizeJSON.VisualStudio/**'
+      - 'CHANGELOG.md'
+      - 'Directory.Build.props'
   workflow_dispatch:
 
 permissions:
