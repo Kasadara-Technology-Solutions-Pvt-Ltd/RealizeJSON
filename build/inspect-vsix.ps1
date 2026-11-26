@@ -24,7 +24,7 @@ try {
     $required = @('extension.vsixmanifest', 'manifest.json', 'catalog.json', 'RealizeJSON.VisualStudio.dll', 'RealizeJSON.VisualStudio.pkgdef',
         'RealizeJSON.Core.dll', 'RealizeJSON.CodeAnalysis.dll', 'RealizeJSON.Serialization.dll', 'RealizeJSON.Serialization.SystemTextJson.dll',
         'RealizeJSON.Serialization.NewtonsoftJson.dll', 'RealizeJSON.SampleData.dll', 'RealizeJSON.UI.dll', 'RealizeJSON.Diagnostics.dll',
-        'Resources/RealizeJSON-128.png', 'LICENSE')
+        'Resources/RealizeJSON-128.png', 'LICENSE', 'NOTICE')
     $missing = $required | Where-Object { $entries -notcontains $_ }
     if ($missing) { throw "VSIX is missing: $($missing -join ', ')" }
 

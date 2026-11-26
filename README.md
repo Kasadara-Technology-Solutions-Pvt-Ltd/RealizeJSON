@@ -107,7 +107,8 @@ the startup project in Visual Studio and pressing F5 (`devenv /rootsuffix Exp`).
 
 ## License
 
-Licensed under the [Apache License 2.0](LICENSE). Third-party components are listed in
+Copyright 2026 Kasadara Technology Solutions Private Limited. Licensed under the [Apache License 2.0](LICENSE); see
+[NOTICE](NOTICE). Third-party components are listed in
 [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 
 RealizeJSON is a contribution of Kasadara Technology Solutions Private Limited to the developer community.

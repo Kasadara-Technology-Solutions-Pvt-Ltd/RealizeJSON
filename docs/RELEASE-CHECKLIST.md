@@ -3,7 +3,7 @@
 ## Blockers for the first public release
 
 - [ ] **GitHub access**: Claude GitHub App push access for the repository (still refused on 2026-11-26), or push the branch manually so CI can run.
-- [x] **License**: Apache-2.0 `LICENSE` added and referenced by the VSIX manifest. Optional: owner adds a `NOTICE` file.
+- [x] **License**: Apache-2.0 `LICENSE` added and referenced by the VSIX manifest; `NOTICE` added; both packaged in the VSIX.
 - [ ] **VSIX build** succeeds on `windows-latest` (CI job `vsix`) and `build/inspect-vsix.ps1` passes.
 - [ ] **IDE validation**: every step in `docs/TESTING.md` § IDE integration validation passes on VS 2022 17.8 (oldest),
       latest VS 2022, VS 2022 Arm64 (if advertised) and VS 2026 (if advertised). Update the compatibility matrix.
