@@ -72,7 +72,7 @@ Each advertised IDE version must pass all steps before release.
 
 | # | Step | Expected |
 |---|---|---|
-| 1 | Install the VSIX via VSIXInstaller (VS 2022 17.8+, x64; VS 2022 Arm64; VS 2026) | Installs without warnings; appears in *Extensions › Manage Extensions* |
+| 1 | Install the VSIX via VSIXInstaller (each host in the manifest's installation targets; from 1.0.0: VS 2026 x64) | Installs without warnings; appears in *Extensions › Manage Extensions* |
 | 2 | Start VS; check *Help › About* and ActivityLog | Package not loaded until first use |
 | 3 | *View › Other Windows › RealizeJSON* | Window opens docked next to Solution Explorer; caption and icon correct |
 | 4 | Open the acceptance `CustomerDTO`; place caret in the class | Preview matches `README` example with Web defaults; Password excluded |

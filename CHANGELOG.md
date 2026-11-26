@@ -5,6 +5,22 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-11-26
+
+First production release.
+
+### Changed
+
+- RealizeJSON installs on Visual Studio 2026 (18.0 or later) x64, the host it has been validated on. Visual Studio
+  2022 and Arm64 will be added back after validation.
+- The extension is no longer marked as preview.
+- Expanded Visual Studio Marketplace overview.
+
+### Validation
+
+- 0.1.2 passed the IDE validation steps 1, 3, 4, 5, 6, 8, 10, 11, 12 and 15 on Visual Studio 2026 (18.0); see
+  `docs/TESTING.md`. The remaining steps are not yet recorded.
+
 ## [0.1.2] - 2026-11-26
 
 ### Fixed
@@ -62,7 +78,8 @@ All notable changes to this project are documented here. The format follows
 - Installation and in-IDE behavior (the VSIX is built and content-verified by CI, but has not been installed in
   Visual Studio yet). See `IMPLEMENTATION-STATUS.md`.
 
-[Unreleased]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases/tag/v1.0.0
 [0.1.2]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases/tag/v0.1.2
 [0.1.1]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases/tag/v0.1.1
 [0.1.0]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases/tag/v0.1.0

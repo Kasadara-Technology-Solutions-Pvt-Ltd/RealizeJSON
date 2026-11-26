@@ -35,8 +35,11 @@ try {
     $reader = [System.IO.StreamReader]::new($manifestEntry.Open())
     $manifest = $reader.ReadToEnd()
     $reader.Dispose()
-    foreach ($needle in @('RealizeJSON - Live JSON Serialization Preview', 'Microsoft.VisualStudio.Community', '[17.8,)', 'RealizeJSON-128.png', '<License>LICENSE</License>', 'Publisher="Kasadara Technology Solutions Pvt Ltd"', '<Preview>true</Preview>')) {
+    foreach ($needle in @('RealizeJSON - Live JSON Serialization Preview', 'Microsoft.VisualStudio.Community', '[18.0,)', 'RealizeJSON-128.png', '<License>LICENSE</License>', 'Publisher="Kasadara Technology Solutions Pvt Ltd"')) {
         if (-not $manifest.Contains($needle)) { throw "Manifest is missing '$needle'." }
+    }
+    foreach ($needle in @('<Preview>', '<ProductArchitecture>arm64</ProductArchitecture>', 'Community" Version="[17.')) {
+        if ($manifest.Contains($needle)) { throw "Manifest must not contain '$needle' (release targets validated hosts only)." }
     }
 
     Write-Host "VSIX verified: $Path" -ForegroundColor Green

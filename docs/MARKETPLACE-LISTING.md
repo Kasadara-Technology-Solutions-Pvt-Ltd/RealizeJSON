@@ -12,7 +12,7 @@
 | Categories | Coding; Other |
 | Tags | json, serialization, System.Text.Json, Newtonsoft.Json, Roslyn, DTO, API, contract |
 | Icon | `assets/branding/png/realizejson-128.png` |
-| Supported products | Visual Studio 2022 17.8+ (x64, Arm64) — add Visual Studio 2026 only after validation |
+| Supported products | Visual Studio 2026 (18.0+), x64. Add Visual Studio 2022 / Arm64 only after validation |
 | Price | Free |
 | License | Apache-2.0 |
 | Repository | https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON |

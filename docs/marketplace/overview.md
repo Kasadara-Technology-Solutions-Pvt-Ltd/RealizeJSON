@@ -103,8 +103,8 @@ Shows System.Text.Json type discriminators, with a selector to preview each deri
 a preview was cut short by a size limit, you're asked to confirm before copying it.
 
 ### Feels like part of Visual Studio
-A dockable tool window that follows your Visual Studio theme and colors JSON with your editor's colors. Open it with **View › Other Windows › RealizeJSON**, or right-click in the editor and choose
-**Preview as JSON** (**Ctrl+Shift+Alt+J**, rebindable).
+A dockable tool window that follows your Visual Studio theme and colors JSON with your editor's colors. Open it with
+**View › Other Windows › RealizeJSON**, or right-click in the editor and choose **Preview as JSON** (**Ctrl+Shift+Alt+J**, rebindable).
 
 ---
 
@@ -139,11 +139,11 @@ labels:
 2. Open **View › Other Windows › RealizeJSON**, or right-click in a class and choose **Preview as JSON**.
 3. Put the caret in any class or record. That's it.
 
-**Requirements:** Visual Studio 2022 version 17.8 or later, or Visual Studio 2026, on Windows, with C# language
-support (included with any .NET workload). Tested on Visual Studio 2026.
+**Requirements:** Visual Studio 2026 (version 18.0 or later) on Windows x64, with C# language support (included with any .NET workload). Visual Studio 2022 support
+is planned once it has been validated.
 
-> **Preview release.** RealizeJSON is new and still being tested across Visual Studio versions. Please report anything
-> that looks wrong on [GitHub Issues](https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/issues).
+Found a problem or have an idea? Open an issue on
+[GitHub](https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/issues).
 
 ---
 

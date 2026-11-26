@@ -17,9 +17,9 @@ with impact noted; **Blocked** = cannot be completed in the current environment.
 
 | Host | Installable per manifest | Validated |
 |---|---|---|
-| Visual Studio 2022 17.8+ x64 | Yes (`[17.8,)`, amd64) | **No** |
-| Visual Studio 2022 17.8+ Arm64 | Yes (arm64) | **No** |
-| Visual Studio 2026 | Yes (lower-bound compatibility) | **Partial**: 0.1.2 on 18.0 passed steps 1, 3, 4, 5, 6, 8, 10, 11, 12, 15 (0.1.1's tool window failed to open; fixed in 0.1.2) |
+| Visual Studio 2022 17.8+ x64 | No from 1.0.0 (ADR-011) | **No** |
+| Visual Studio 2022/2026 Arm64 | No from 1.0.0 (ADR-011) | **No** |
+| Visual Studio 2026 x64 | Yes (`[18.0,)`, amd64) | **Partial**: 0.1.2 on 18.0 passed steps 1, 3, 4, 5, 6, 8, 10, 11, 12, 15 (0.1.1's tool window failed to open; fixed in 0.1.2) |
 | Visual Studio 2019 and earlier, VS Code, VS for Mac | No | n/a |
 
 Do not advertise any host as supported until it is validated.
@@ -33,7 +33,7 @@ Do not advertise any host as supported until it is validated.
 | M2 MVP | Done (unvalidated in IDE) |
 | M3 Advanced (P1) | Done except FR-06 constant-initializer mode and Newtonsoft type-name polymorphism (deferred) |
 | M4 Hardening | Differential, security, lifecycle, performance (test host) done; IDE accessibility/compatibility validation blocked |
-| M5 Distribution | Docs, notices, listing draft, checklist, license, releases 0.1.0–0.1.2 done; IDE validation partial (VS 2026 18.0) |
+| M5 Distribution | Docs, notices, listing draft, checklist, license, releases 0.1.0–0.1.2 and 1.0.0 done; IDE validation partial (VS 2026 18.0) |
 
 ## Requirements
 
@@ -85,6 +85,6 @@ Do not advertise any host as supported until it is validated.
 
 ## Known gaps to address next
 
-2. Finish the IDE validation procedure: remaining steps on VS 2026, all steps on VS 2022 17.8 and latest VS 2022 (or narrow the advertised hosts); capture screenshots.
+2. Finish the IDE validation procedure: remaining steps on VS 2026; validate VS 2022 and Arm64 before widening the installation targets; capture screenshots.
 3. FR-06 constant-initializer inference (P1) and Newtonsoft `TypeNameHandling` previews (P1, opt-in only).
 4. Measure in-IDE latency and memory across solution switches.

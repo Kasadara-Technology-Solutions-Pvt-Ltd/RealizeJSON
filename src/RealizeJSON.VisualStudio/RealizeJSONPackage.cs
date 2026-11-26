@@ -16,7 +16,7 @@ namespace RealizeJSON.VisualStudio;
 /// </summary>
 [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
 [ProvideBindingPath]
-[InstalledProductRegistration("RealizeJSON", "See your JSON before your code runs.", "0.1.2")]
+[InstalledProductRegistration("RealizeJSON", "See your JSON before your code runs.", "1.0.0")]
 [ProvideMenuResource("Menus.ctmenu", 1)]
 [ProvideToolWindow(typeof(PreviewToolWindow), Style = VsDockStyle.Tabbed, Window = "3ae79031-e1bc-11d0-8f78-00a0c9110057", Orientation = ToolWindowOrientation.Right)]
 [ProvideOptionPage(typeof(OptionsPage), "RealizeJSON", "General", 0, 0, true)]

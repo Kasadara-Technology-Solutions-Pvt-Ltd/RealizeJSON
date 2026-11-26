@@ -14,9 +14,9 @@ The value must equal the hash in `SHA256SUMS.txt`.
 
 ## Requirements
 
-- Visual Studio 2022 version 17.8 or later (Community, Professional or Enterprise), x64 or Arm64.
+- Visual Studio 2026 (version 18.0 or later; Community, Professional or Enterprise) on Windows x64.
 - C# language services (installed with any .NET development workload).
-- Visual Studio 2026 accepts Visual Studio 2022 extensions, but RealizeJSON has not been validated there yet.
+- Visual Studio 2022 and Arm64 are not supported yet: they have not been validated (ADR-011).
 
 ## Install
 
