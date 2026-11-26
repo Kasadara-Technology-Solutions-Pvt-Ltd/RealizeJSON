@@ -65,7 +65,8 @@ See [IMPLEMENTATION-STATUS.md](IMPLEMENTATION-STATUS.md) for the requirement-by-
 
 ## Getting started
 
-1. Install the VSIX (see [docs/INSTALL.md](docs/INSTALL.md)).
+1. Download `RealizeJSON-<version>.vsix` from [GitHub Releases](https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases)
+   (verify it against `SHA256SUMS.txt`) and install it (see [docs/INSTALL.md](docs/INSTALL.md)).
 2. Open a C# file and choose **View › Other Windows › RealizeJSON**, or right-click in the editor and choose
    **Preview as JSON** (default shortcut **Ctrl+Shift+Alt+J**, rebindable under *Tools › Options › Environment ›
    Keyboard*).

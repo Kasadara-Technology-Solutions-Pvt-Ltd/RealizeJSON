@@ -1,7 +1,16 @@
 # Installing RealizeJSON
 
-> No VSIX has been published yet. Build one with `pwsh ./build/package.ps1` on Windows or download the
-> `RealizeJSON-vsix` artifact from a successful CI run.
+> Download `RealizeJSON-<version>.vsix` and `SHA256SUMS.txt` from
+> [GitHub Releases](https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases), or build one with
+> `pwsh ./build/package.ps1` on Windows. 0.x releases are pre-releases that have not yet been validated in every IDE.
+
+Verify the download (PowerShell, in the download folder):
+
+```bash
+pwsh -c "(Get-FileHash RealizeJSON-0.1.0.vsix -Algorithm SHA256).Hash.ToLower()"
+```
+
+The value must equal the hash in `SHA256SUMS.txt`.
 
 ## Requirements
 

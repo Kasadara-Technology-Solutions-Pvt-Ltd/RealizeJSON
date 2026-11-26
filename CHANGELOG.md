@@ -3,7 +3,9 @@
 All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
-## [Unreleased] — 0.1.0
+## [Unreleased]
+
+## [0.1.0] - 2026-11-26
 
 ### Added
 
@@ -27,7 +29,10 @@ All notable changes to this project are documented here. The format follows
 - Brand assets, build/test/package scripts, CI workflow, documentation and 638 automated tests including differential
   tests against the real serializers.
 
-### Not yet validated
+### Known limitations
 
 - Installation and in-IDE behavior (the VSIX is built and content-verified by CI, but has not been installed in
   Visual Studio yet). See `IMPLEMENTATION-STATUS.md`.
+
+[Unreleased]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases/tag/v0.1.0
