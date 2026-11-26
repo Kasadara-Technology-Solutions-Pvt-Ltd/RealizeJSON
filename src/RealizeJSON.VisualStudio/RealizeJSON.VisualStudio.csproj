@@ -1,0 +1,73 @@
+<Project>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <RootNamespace>RealizeJSON.VisualStudio</RootNamespace>
+    <AssemblyName>RealizeJSON.VisualStudio</AssemblyName>
+    <Description>RealizeJSON Visual Studio extension host (VSSDK, in-process).</Description>
+    <GeneratePkgDefFile>true</GeneratePkgDefFile>
+    <UseCodebase>true</UseCodebase>
+    <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
+    <IncludeDebugSymbolsInVSIXContainer>true</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>true</IncludeDebugSymbolsInLocalVSIXDeployment>
+    <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
+    <CopyOutputSymbolsToOutputDirectory>true</CopyOutputSymbolsToOutputDirectory>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(DevEnvDir)devenv.exe</StartProgram>
+    <StartArguments>/rootsuffix Exp</StartArguments>
+    <!-- The VSIX is produced only where the VSSDK build tasks can run: Windows with Visual Studio (full) MSBuild. -->
+    <RealizeJsonCanBuildVsix Condition="'$(OS)' == 'Windows_NT' and '$(MSBuildRuntimeType)' == 'Full'">true</RealizeJsonCanBuildVsix>
+    <DeployExtension Condition="'$(RealizeJsonCanBuildVsix)' != 'true' or '$(CI)' == 'true' or '$(GITHUB_ACTIONS)' == 'true'">false</DeployExtension>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RealizeJSON.UI\RealizeJSON.UI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Visual Studio supplies these at runtime; compile against the minimum supported version (VS 2022 17.8). -->
+    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.8.37222" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="$(RoslynVersion)" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.CodeAnalysis.EditorFeatures.Text" Version="$(RoslynVersion)" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.VisualStudio.LanguageServices" Version="$(RoslynVersion)" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.14.2142" PrivateAssets="all" Condition="'$(RealizeJsonCanBuildVsix)' == 'true'" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <VSCTCompile Include="RealizeJSONPackage.vsct" ResourceName="Menus.ctmenu" />
+    <None Include="source.extension.vsixmanifest" SubType="Designer" />
+    <Content Include="Resources\RealizeJSON-128.png" IncludeInVSIX="true" />
+    <Content Include="Resources\RealizeJSON-preview-200.png" IncludeInVSIX="true" />
+    <Content Include="..\..\LICENSE" Link="LICENSE" IncludeInVSIX="true" />
+    <Content Include="..\..\NOTICE" Link="NOTICE" IncludeInVSIX="true" />
+    <Content Include="..\..\THIRD-PARTY-NOTICES.md" Link="THIRD-PARTY-NOTICES.md" IncludeInVSIX="true" Condition="Exists('..\..\THIRD-PARTY-NOTICES.md')" />
+  </ItemGroup>
+
+  <!--
+    Visual Studio provides Roslyn, the editor and shell assemblies at runtime. Only RealizeJSON.* assemblies are
+    copied locally (and therefore packaged into the VSIX) to avoid duplicate or conflicting Roslyn assemblies.
+  -->
+  <Target Name="RealizeJsonKeepOnlyOwnAssemblies" AfterTargets="ResolveAssemblyReferences">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="!$([System.String]::Copy('%(Filename)').StartsWith('RealizeJSON.'))" />
+      <ReferenceSatellitePaths Remove="@(ReferenceSatellitePaths)" />
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+
+  <!--
+    The Microsoft.VSSDK.BuildTools package only sets VSToolsPath; VSIX projects must import the VSSDK targets
+    explicitly, after the .NET SDK targets (pkgdef generation, VSCT compilation, VSIX container).
+  -->
+  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(RealizeJsonCanBuildVsix)' == 'true' and Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" />
+</Project>

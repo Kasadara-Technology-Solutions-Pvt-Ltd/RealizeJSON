@@ -1,0 +1,34 @@
+name: Bug report
+description: The preview differs from real serializer output, or the extension misbehaves.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Please do not paste proprietary source code. A minimal reproducing type is ideal.
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: RealizeJSON, Visual Studio (Help > About), serializer and version.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Minimal C# type
+      render: csharp
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected JSON (real serializer output and settings)
+      render: json
+  - type: textarea
+    id: actual
+    attributes:
+      label: Preview shown (including label and diagnostics)
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce

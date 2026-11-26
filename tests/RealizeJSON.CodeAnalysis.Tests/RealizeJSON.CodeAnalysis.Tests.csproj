@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\RealizeJSON.CodeAnalysis\RealizeJSON.CodeAnalysis.csproj" />
+    <ProjectReference Include="..\..\src\RealizeJSON.Serialization.SystemTextJson\RealizeJSON.Serialization.SystemTextJson.csproj" />
+    <ProjectReference Include="..\..\src\RealizeJSON.Serialization.NewtonsoftJson\RealizeJSON.Serialization.NewtonsoftJson.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="$(RoslynVersion)" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Shared\TestCompilation.cs" Link="Shared\TestCompilation.cs" />
+  </ItemGroup>
+</Project>

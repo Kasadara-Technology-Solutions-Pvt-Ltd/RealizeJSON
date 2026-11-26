@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>RealizeJSON host-independent view models, preview coordination and settings.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RealizeJSON.Serialization.SystemTextJson\RealizeJSON.Serialization.SystemTextJson.csproj" />
+    <ProjectReference Include="..\RealizeJSON.Serialization.NewtonsoftJson\RealizeJSON.Serialization.NewtonsoftJson.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="$(RoslynVersion)" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="RealizeJSON.UI.Tests" />
+  </ItemGroup>
+</Project>

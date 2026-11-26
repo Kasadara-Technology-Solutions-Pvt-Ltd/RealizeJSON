@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <Extern href="stdidcmd.h" />
+  <Extern href="vsshlids.h" />
+  <Include href="KnownImageIds.vsct" />
+
+  <Commands package="guidRealizeJSONPackage">
+    <Groups>
+      <Group guid="guidRealizeJSONCmdSet" id="EditorContextGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
+      </Group>
+    </Groups>
+
+    <Buttons>
+      <Button guid="guidRealizeJSONCmdSet" id="cmdidShowToolWindow" priority="0x0100" type="Button">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1" />
+        <Icon guid="ImageCatalogGuid" id="JSONScript" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>RealizeJSON</ButtonText>
+          <CanonicalName>View.RealizeJSON</CanonicalName>
+          <LocCanonicalName>View.RealizeJSON</LocCanonicalName>
+        </Strings>
+      </Button>
+
+      <Button guid="guidRealizeJSONCmdSet" id="cmdidPreviewAsJson" priority="0x0100" type="Button">
+        <Parent guid="guidRealizeJSONCmdSet" id="EditorContextGroup" />
+        <Icon guid="ImageCatalogGuid" id="JSONScript" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Preview as JSON</ButtonText>
+          <CanonicalName>RealizeJSON.PreviewAsJSON</CanonicalName>
+          <LocCanonicalName>RealizeJSON.PreviewAsJSON</LocCanonicalName>
+        </Strings>
+      </Button>
+    </Buttons>
+  </Commands>
+
+  <!-- Default shortcut; users can rebind it under Tools > Options > Environment > Keyboard. -->
+  <KeyBindings>
+    <KeyBinding guid="guidRealizeJSONCmdSet" id="cmdidPreviewAsJson" editor="guidVSStd97" key1="J" mod1="Control Shift Alt" />
+  </KeyBindings>
+
+  <Symbols>
+    <GuidSymbol name="guidRealizeJSONPackage" value="{6f3d9a7e-2c4b-4e8a-9b1d-5a7c3e2f8d10}" />
+    <GuidSymbol name="guidRealizeJSONCmdSet" value="{b1c2d3e4-5f60-4a7b-8c9d-0e1f2a3b4c5d}">
+      <IDSymbol name="EditorContextGroup" value="0x1020" />
+      <IDSymbol name="cmdidShowToolWindow" value="0x0100" />
+      <IDSymbol name="cmdidPreviewAsJson" value="0x0101" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
