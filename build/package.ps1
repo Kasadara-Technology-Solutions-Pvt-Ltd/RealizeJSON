@@ -36,9 +36,14 @@ $vsix = Get-ChildItem -Path (Join-Path $root 'src/RealizeJSON.VisualStudio/bin')
     Sort-Object LastWriteTime -Descending | Select-Object -First 1
 if (-not $vsix) { throw 'No VSIX was produced.' }
 
+$version = & (Join-Path $PSScriptRoot 'check-version.ps1')
 $output = Join-Path $root 'artifacts/vsix'
 New-Item -ItemType Directory -Force -Path $output | Out-Null
-Copy-Item $vsix.FullName -Destination $output -Force
-$hash = (Get-FileHash (Join-Path $output $vsix.Name) -Algorithm SHA256).Hash
-Write-Host "VSIX: $(Join-Path $output $vsix.Name)" -ForegroundColor Green
+Get-ChildItem $output -Filter '*.vsix' | Remove-Item -Force
+$name = "RealizeJSON-$version.vsix"
+$target = Join-Path $output $name
+Copy-Item $vsix.FullName -Destination $target -Force
+$hash = (Get-FileHash $target -Algorithm SHA256).Hash.ToLowerInvariant()
+Set-Content -Path (Join-Path $output 'SHA256SUMS.txt') -Value "$hash  $name" -Encoding ascii
+Write-Host "VSIX: $target" -ForegroundColor Green
 Write-Host "SHA256: $hash"

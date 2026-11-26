@@ -5,6 +5,14 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    ignore:
+      # Visual Studio provides Roslyn and the VS SDK at runtime. These are compiled against the oldest supported
+      # Visual Studio (2022 17.8 / Roslyn 4.8); raising them raises the minimum IDE version (see ADR-002 in
+      # docs/DECISIONS.md) and must be a deliberate change, not an automatic update.
+      - dependency-name: "Microsoft.CodeAnalysis*"
+      - dependency-name: "Microsoft.VisualStudio.*"
+      - dependency-name: "Microsoft.VSSDK.BuildTools"
+        update-types: [ "version-update:semver-major" ]
   - package-ecosystem: github-actions
     directory: /
     schedule:

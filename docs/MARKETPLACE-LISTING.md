@@ -55,3 +55,45 @@ choose *Save solution profile*, in a `.realizejson.json` file in your solution f
 ## Screenshots
 
 None yet. Screenshots must come from a validated build running in Visual Studio (do not use mock-ups).
+
+## Publisher profile (draft — not created)
+
+The Marketplace publisher profile represents Kasadara Technology Solutions Private Limited, not RealizeJSON. Only
+facts known for certain are stated; bracketed items are for the company to fill in or remove. The publisher ID has not
+been reserved, and current Marketplace field names and length limits have not been re-verified.
+
+**Display name:** Kasadara Technology Solutions
+
+**Short description:**
+
+> Kasadara Technology Solutions builds practical, privacy-conscious developer tools for the .NET ecosystem, released
+> as open source.
+
+**Full description:**
+
+> Kasadara Technology Solutions Private Limited builds developer tools that make everyday engineering work clearer and
+> faster. Our extensions are designed to be lightweight, run offline and respect your privacy: no telemetry, no
+> accounts, and your source code never leaves your machine.
+>
+> **RealizeJSON**: see your JSON before your code runs. RealizeJSON previews how your C# types serialize with
+> System.Text.Json and Newtonsoft.Json, live as you type, without building or running your application.
+>
+> Our extensions are open source under the Apache License 2.0. Source code, issue tracking and release notes are on
+> GitHub: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd
+>
+> [About Kasadara: one or two sentences on what the company does beyond these tools, if it should be public.]
+
+| Field | Value |
+|---|---|
+| Publisher ID | To be chosen, e.g. `kasadara`. Permanent and must be unique; availability not checked. |
+| Logo | Kasadara company logo (not the RealizeJSON icon). |
+| Company website | [Company website, if public] |
+| Support | https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/issues or a support email |
+| Source code | https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd |
+
+Before publishing:
+
+- Confirm every claim. "Builds developer tools" reflects RealizeJSON only; remove it if it doesn't describe the
+  company's wider business.
+- "No telemetry, no accounts" is true of RealizeJSON today and must stay true for every extension published under this
+  publisher.
