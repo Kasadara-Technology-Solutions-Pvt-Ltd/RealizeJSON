@@ -367,9 +367,11 @@ internal sealed class PreviewControl : UserControl
 
     private UIElement Toggle(string text, string tooltip, string isCheckedPath, ICommand command)
     {
-        var toggle = new ToggleButton { Content = new AccessText { Text = text }, ToolTip = tooltip, Margin = new Thickness(2), Padding = new Thickness(6, 1, 6, 1), Command = command };
+        // A CheckBox so the themed CheckBox style applies: VsResourceKeys.ButtonStyleKey targets Button, and WPF throws
+        // when a style's TargetType does not match the element (it did for a ToggleButton, breaking the whole window).
+        var toggle = new CheckBox { Content = new AccessText { Text = text }, ToolTip = tooltip, Margin = new Thickness(4, 2, 4, 2), VerticalAlignment = VerticalAlignment.Center, Command = command };
         toggle.SetBinding(ToggleButton.IsCheckedProperty, new Binding(isCheckedPath) { Mode = BindingMode.OneWay });
-        ApplyStyle(toggle, VsResourceKeys.ButtonStyleKey);
+        ApplyStyle(toggle, VsResourceKeys.CheckBoxStyleKey);
         AutomationProperties.SetName(toggle, text.Replace("_", string.Empty));
         AutomationProperties.SetHelpText(toggle, tooltip);
         return toggle;

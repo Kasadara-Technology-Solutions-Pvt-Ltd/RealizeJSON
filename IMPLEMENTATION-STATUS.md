@@ -1,6 +1,6 @@
 # Implementation status
 
-Last updated: 2026-11-25. Legend: **Done** = implemented and covered by automated tests; **Done (unvalidated)** =
+Last updated: 2026-11-26. Legend: **Done** = implemented and covered by automated tests; **Done (unvalidated)** =
 implemented and compiled, requires the in-IDE validation in `docs/TESTING.md`; **Deferred** = intentionally postponed
 with impact noted; **Blocked** = cannot be completed in the current environment.
 
@@ -10,7 +10,7 @@ with impact noted; **Blocked** = cannot be completed in the current environment.
 |---|---|
 | Development environment | Linux x64 container, .NET SDK 10.0.115, PowerShell 7.7, no Windows, no Visual Studio |
 | GitHub | Resolved 2026-11-26: branch pushed, PR #1 open against `main`. |
-| VSIX packaging | Done in CI (`windows-latest`, full MSBuild, VSSDK BuildTools 17.14.2142): `RealizeJSON-vsix` artifact built and verified by `build/inspect-vsix.ps1`. Not yet installed in an IDE. |
+| VSIX packaging | Done in CI (`windows-latest`, full MSBuild, VSSDK BuildTools 17.14.2142): `RealizeJSON-vsix` artifact built and verified by `build/inspect-vsix.ps1`. 0.1.1 installs in Visual Studio 2026 (18.0). |
 | IDE validation | **Blocked** (no Visual Studio). Manual procedure: `docs/TESTING.md` § IDE integration validation. |
 
 ## Compatibility matrix
@@ -19,7 +19,7 @@ with impact noted; **Blocked** = cannot be completed in the current environment.
 |---|---|---|
 | Visual Studio 2022 17.8+ x64 | Yes (`[17.8,)`, amd64) | **No** |
 | Visual Studio 2022 17.8+ Arm64 | Yes (arm64) | **No** |
-| Visual Studio 2026 | Yes (lower-bound compatibility) | **No** |
+| Visual Studio 2026 | Yes (lower-bound compatibility) | **No**. On 18.0, 0.1.1 installed but its tool window failed to open; the 0.1.2 CI build fixes that (window opens). Remaining validation steps not yet run |
 | Visual Studio 2019 and earlier, VS Code, VS for Mac | No | n/a |
 
 Do not advertise any host as supported until it is validated.
