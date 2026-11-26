@@ -17,7 +17,7 @@ Algorithms ported (not copied as code) for behavioral fidelity:
 | Component | Version | License |
 |---|---|---|
 | Microsoft.VisualStudio.SDK | 17.8.37222 | Microsoft Visual Studio SDK license |
-| Microsoft.VSSDK.BuildTools | 17.14.2142 | Microsoft license |
+| Microsoft.VSSDK.BuildTools | 18.12.1606 | Microsoft license |
 | Microsoft.CodeAnalysis.CSharp.Workspaces | 4.8.0 | MIT |
 | Microsoft.CodeAnalysis.EditorFeatures.Text | 4.8.0 | MIT |
 | Microsoft.VisualStudio.LanguageServices | 4.8.0 | MIT |

@@ -69,9 +69,10 @@ by text version.
 
 ## ADR-008 — Publisher display name and identity
 
-The Visual Studio Marketplace publisher was created by the owner on 2026-11-26: ID `kasadara`, display name
-"Kasadara Technology Solutions Pvt Ltd". From 0.1.1 the VSIX `Publisher` attribute uses that exact display name
-(0.1.0 used "Kasadara Technology Solutions Private Limited"), so Marketplace uploads match the publisher.
+The Visual Studio Marketplace publisher was created by the owner on 2026-11-26: ID `kasadara`. The Marketplace
+requires the VSIX `Publisher` attribute to equal the publisher's display name exactly. The display name was later
+changed to "Kasadara", which the VSIX uses from 1.0.1 (0.1.1–1.0.0 used "Kasadara Technology Solutions Pvt Ltd", 0.1.0
+"Kasadara Technology Solutions Private Limited").
 `src/RealizeJSON.VisualStudio/publishManifest.json` references the publisher ID. The legal entity name stays in
 `NOTICE`. Marketplace publishing is a manual step that needs the owner's credentials; no token is stored in the
 repository or in CI.
@@ -92,7 +93,9 @@ commits).
 **Status:** Accepted (1.0.0).
 
 **Decision.** From 1.0.0 the manifest targets Visual Studio 2026 x64 only (`[18.0,)`, amd64), and the VSIX is no
-longer marked as preview. The compile-time references stay at VS 2022 17.8 / Roslyn 4.8 (ADR-002).
+longer marked as preview. The compile-time references stay at VS 2022 17.8 / Roslyn 4.8 (ADR-002). The Marketplace rejects a VSIX that
+targets 18.0 or later unless it is built with current VSSDK build tools, so from 1.0.1 `Microsoft.VSSDK.BuildTools` is
+18.x (18.12.1606).
 
 **Rationale.** Only Visual Studio 2026 (18.0) x64 has been validated in a running IDE (`docs/TESTING.md`). A
 production release should not install where it has never run. VS 2022 and Arm64 are re-added as installation targets
@@ -104,7 +107,7 @@ still targets 17.x, Arm64 or preview.
 | Package | Version | Use | License |
 |---|---|---|---|
 | Microsoft.VisualStudio.SDK | 17.8.37222 | Compile-time VS APIs (not shipped) | Microsoft Visual Studio SDK license |
-| Microsoft.VSSDK.BuildTools | 17.14.2142 | VSIX build tasks (Windows only, not shipped) | Microsoft license |
+| Microsoft.VSSDK.BuildTools | 18.12.1606 | VSIX build tasks (Windows only, not shipped) | Microsoft license |
 | Microsoft.CodeAnalysis.CSharp.Workspaces | 4.8.0 | Roslyn APIs (provided by VS at runtime) | MIT |
 | Microsoft.CodeAnalysis.EditorFeatures.Text | 4.8.0 | Snapshot → Document mapping (provided by VS) | MIT |
 | Microsoft.VisualStudio.LanguageServices | 4.8.0 | `VisualStudioWorkspace` (provided by VS) | MIT |

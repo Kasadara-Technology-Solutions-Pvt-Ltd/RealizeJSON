@@ -30,7 +30,7 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="$(RoslynVersion)" ExcludeAssets="runtime" />
     <PackageReference Include="Microsoft.CodeAnalysis.EditorFeatures.Text" Version="$(RoslynVersion)" ExcludeAssets="runtime" />
     <PackageReference Include="Microsoft.VisualStudio.LanguageServices" Version="$(RoslynVersion)" ExcludeAssets="runtime" />
-    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.14.2142" PrivateAssets="all" Condition="'$(RealizeJsonCanBuildVsix)' == 'true'" />
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="18.12.1606" PrivateAssets="all" Condition="'$(RealizeJsonCanBuildVsix)' == 'true'" />
   </ItemGroup>
 
   <ItemGroup>

@@ -8,7 +8,7 @@
 | Field | Value |
 |---|---|
 | Display name | RealizeJSON - Live JSON Serialization Preview |
-| Publisher | `kasadara`: Kasadara Technology Solutions Pvt Ltd |
+| Publisher | `kasadara`: display name Kasadara (must equal the VSIX `Publisher` attribute) |
 | Categories | Coding; Other |
 | Tags | json, serialization, System.Text.Json, Newtonsoft.Json, Roslyn, DTO, API, contract |
 | Icon | `assets/branding/png/realizejson-128.png` |
@@ -58,11 +58,11 @@ None yet. Screenshots must come from a validated build running in Visual Studio 
 
 ## Publisher profile
 
-The publisher was created on 2026-11-26: ID `kasadara`, display name **Kasadara Technology Solutions Pvt Ltd**. The
+The publisher was created on 2026-11-26: ID `kasadara`, display name **Kasadara**. The
 text below is the suggested profile content; bracketed items are for the company to fill in or remove. Current
 Marketplace field length limits have not been re-verified.
 
-**Display name:** Kasadara Technology Solutions Pvt Ltd
+**Display name:** Kasadara
 
 **Short description:**
 

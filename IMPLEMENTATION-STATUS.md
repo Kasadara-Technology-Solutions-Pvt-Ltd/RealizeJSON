@@ -10,7 +10,7 @@ with impact noted; **Blocked** = cannot be completed in the current environment.
 |---|---|
 | Development environment | Linux x64 container, .NET SDK 10.0.115, PowerShell 7.7, no Windows, no Visual Studio |
 | GitHub | Resolved 2026-11-26: branch pushed, PR #1 open against `main`. |
-| VSIX packaging | Done in CI (`windows-latest`, full MSBuild, VSSDK BuildTools 17.14.2142): `RealizeJSON-vsix` artifact built and verified by `build/inspect-vsix.ps1`. 0.1.1 installs in Visual Studio 2026 (18.0). |
+| VSIX packaging | Done in CI (`windows-latest`, full MSBuild, VSSDK BuildTools 18.12.1606): `RealizeJSON-vsix` artifact built and verified by `build/inspect-vsix.ps1`. 0.1.1 installs in Visual Studio 2026 (18.0). |
 | IDE validation | **Partial**, performed by the maintainer: 0.1.2 on Visual Studio 2026 (18.0) passed steps 1, 3, 4, 5, 6, 8, 10, 11, 12, 15. Other steps and other hosts not run. Results: `docs/TESTING.md` § IDE integration validation. |
 
 ## Compatibility matrix
