@@ -16,7 +16,8 @@ $root = Split-Path -Parent $PSScriptRoot
 $results = Join-Path $root 'artifacts/test-results'
 New-Item -ItemType Directory -Force -Path $results | Out-Null
 
-$arguments = @('test', (Join-Path $root 'RealizeJSON.sln'), '--configuration', $Configuration, '--logger', 'trx', '--results-directory', $results)
+# Microsoft.Testing.Platform mode (opted in via global.json "test.runner"); TRX via the xUnit v3 reporter.
+$arguments = @('test', '--solution', (Join-Path $root 'RealizeJSON.sln'), '--configuration', $Configuration, '--results-directory', $results, '--report-xunit-trx')
 if ($NoBuild) { $arguments += '--no-build' }
 
 dotnet @arguments
