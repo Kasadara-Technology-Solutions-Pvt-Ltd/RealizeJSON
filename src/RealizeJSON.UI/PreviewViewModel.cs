@@ -95,6 +95,12 @@ public sealed class PreviewViewModel : ObservableObject, IDisposable
 
     public UserSettings Settings => _settings;
 
+    /// <summary>
+    /// When false (a solution profile is active), toolbar changes apply to the session only and are not written to the
+    /// per-user store, so solution-scoped values never leak into user defaults.
+    /// </summary>
+    public bool PersistChanges { get; set; } = true;
+
     // ---- Presentation ----------------------------------------------------------------------------------------
 
     public string Json { get => _json; private set => Set(ref _json, value); }
@@ -299,6 +305,11 @@ public sealed class PreviewViewModel : ObservableObject, IDisposable
 
     private void Persist()
     {
+        if (!PersistChanges)
+        {
+            return;
+        }
+
         try
         {
             _store.Write(SettingsSerializer.StoreKey, SettingsSerializer.ToJson(_settings));

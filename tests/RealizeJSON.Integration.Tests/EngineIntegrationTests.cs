@@ -251,3 +251,14 @@ public sealed class EngineIntegrationTests
         Assert.True(p95 < 500, $"p95 {p95:F1} ms exceeds the 500 ms target");
     }
 }
+
+public sealed class TargetFrameworkTests
+{
+    [Theory]
+    [InlineData("net8.0", "NET", "NET8_0", "NET5_0_OR_GREATER", "NET6_0", "NETCOREAPP")]
+    [InlineData("netstandard2.0", "NETSTANDARD", "NETSTANDARD2_0")]
+    [InlineData("net472", "NETFRAMEWORK", "NET472", "NET47")]
+    [InlineData(null, "DEBUG", "TRACE")]
+    public void Target_framework_is_inferred_from_preprocessor_symbols(string? expected, params string[] symbols) =>
+        Assert.Equal(expected, PreviewEngine.InferTargetFramework(symbols));
+}

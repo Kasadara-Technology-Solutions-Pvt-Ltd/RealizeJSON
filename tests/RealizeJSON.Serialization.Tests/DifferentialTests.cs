@@ -15,7 +15,7 @@ public sealed class DifferentialTests
     {
         "CustomerDTO", "Primitives", "Nullables", "Order", "OrderLine", "Dictionaries", "DerivedEntity", "PersonRecord",
         "PointRecord", "WithStruct", "GenericHolder", "StjAttributes", "WithFields", "Siblings", "TreeNode", "Tuples",
-        "NsAttributes", "NsOptIn", "NsDataContract", "EnumMembers", "NamingSamples", "Address", "Deep1",
+        "NsAttributes", "NsOptIn", "NsDataContract", "EnumMembers", "NamingSamples", "Address", "Deep1", "HalfValues",
     };
 
     public static IEnumerable<TheoryDataRow<string, SerializerKind, ProfilePreset, SampleMode>> Matrix()

@@ -31,6 +31,57 @@ public sealed class OptionsPage : DialogPage
     [Description("Statically detect AddJsonOptions/AddNewtonsoftJson configuration. Code is never executed.")]
     public bool DetectConfiguration { get; set; } = true;
 
+    [Category("Profile overrides")]
+    [DisplayName("Property naming")]
+    [Description("Overrides the preset/detected naming policy. Newtonsoft.Json has no upper-case strategies.")]
+    public NamingOption PropertyNaming { get; set; }
+
+    [Category("Profile overrides")]
+    [DisplayName("Dictionary key naming")]
+    [Description("System.Text.Json DictionaryKeyPolicy (string and enum keys). Newtonsoft.Json: ProcessDictionaryKeys with the naming strategy.")]
+    public NamingOption DictionaryKeyNaming { get; set; }
+
+    [Category("Profile overrides")]
+    [DisplayName("Enums")]
+    public EnumOption Enums { get; set; }
+
+    [Category("Profile overrides")]
+    [DisplayName("Enum string naming")]
+    [Description("Naming policy passed to JsonStringEnumConverter / StringEnumConverter when enums are strings.")]
+    public NamingOption EnumNaming { get; set; }
+
+    [Category("Profile overrides")]
+    [DisplayName("Ignore condition")]
+    [Description("System.Text.Json DefaultIgnoreCondition; Newtonsoft.Json NullValueHandling/DefaultValueHandling = Ignore.")]
+    public IgnoreOption IgnoreCondition { get; set; }
+
+    [Category("Profile overrides")]
+    [DisplayName("Include fields (System.Text.Json only)")]
+    [Description("Newtonsoft.Json always serializes public fields.")]
+    public ToggleOption IncludeFields { get; set; }
+
+    [Category("Profile overrides")]
+    [DisplayName("Ignore read-only properties (System.Text.Json only)")]
+    public ToggleOption IgnoreReadOnlyProperties { get; set; }
+
+    [Category("Profile overrides")]
+    [DisplayName("Ignore read-only fields (System.Text.Json only)")]
+    public ToggleOption IgnoreReadOnlyFields { get; set; }
+
+    [Category("Profile overrides")]
+    [DisplayName("Write numbers as strings (System.Text.Json only)")]
+    public ToggleOption WriteNumbersAsStrings { get; set; }
+
+    [Category("Profile overrides")]
+    [DisplayName("Reference handling")]
+    [Description("Preserve: $id/$ref metadata. IgnoreCycles: STJ writes null / Newtonsoft skips looping members.")]
+    public ReferenceOption ReferenceHandling { get; set; }
+
+    [Category("Profile overrides")]
+    [DisplayName("Override specified names (Newtonsoft.Json only)")]
+    [Description("NamingStrategy.OverrideSpecifiedNames. System.Text.Json never renames [JsonPropertyName] names.")]
+    public ToggleOption OverrideSpecifiedNames { get; set; }
+
     [Category("Samples")]
     [DisplayName("Values")]
     [Description("Sample values are illustrative; CLR defaults are synthetic default values (constructors and initializers are not simulated).")]
@@ -85,6 +136,30 @@ public sealed class OptionsPage : DialogPage
         MaxDepth = settings.MaxDepth;
         MaxNodes = settings.MaxNodes;
         MaxBytes = settings.MaxBytes;
+        var o = settings.Overrides;
+        PropertyNaming = ToOption(o.PropertyNaming);
+        DictionaryKeyNaming = ToOption(o.DictionaryKeyNaming);
+        EnumNaming = ToOption(o.EnumNaming);
+        Enums = o.Enums switch { EnumRepresentation.Numbers => EnumOption.Numbers, EnumRepresentation.Strings => EnumOption.Strings, _ => EnumOption.ProfileDefault };
+        IgnoreCondition = o.IgnoreCondition switch
+        {
+            DefaultIgnoreCondition.Never => IgnoreOption.Never,
+            DefaultIgnoreCondition.WhenWritingNull => IgnoreOption.WhenWritingNull,
+            DefaultIgnoreCondition.WhenWritingDefault => IgnoreOption.WhenWritingDefault,
+            _ => IgnoreOption.ProfileDefault,
+        };
+        IncludeFields = ToOption(o.IncludeFields);
+        IgnoreReadOnlyProperties = ToOption(o.IgnoreReadOnlyProperties);
+        IgnoreReadOnlyFields = ToOption(o.IgnoreReadOnlyFields);
+        WriteNumbersAsStrings = ToOption(o.WriteNumbersAsStrings);
+        OverrideSpecifiedNames = ToOption(o.OverrideSpecifiedNames);
+        ReferenceHandling = o.ReferenceHandling switch
+        {
+            ReferenceHandlingMode.None => ReferenceOption.None,
+            ReferenceHandlingMode.Preserve => ReferenceOption.Preserve,
+            ReferenceHandlingMode.IgnoreCycles => ReferenceOption.IgnoreCycles,
+            _ => ReferenceOption.ProfileDefault,
+        };
     }
 
     public override void SaveSettingsToStorage()
@@ -106,7 +181,87 @@ public sealed class OptionsPage : DialogPage
             MaxNodes = MaxNodes,
             MaxBytes = MaxBytes,
         }).Normalize();
+        settings = settings with
+        {
+            Overrides = settings.Overrides with
+            {
+                PropertyNaming = FromOption(PropertyNaming),
+                DictionaryKeyNaming = FromOption(DictionaryKeyNaming),
+                EnumNaming = FromOption(EnumNaming),
+                Enums = Enums switch { EnumOption.Numbers => EnumRepresentation.Numbers, EnumOption.Strings => EnumRepresentation.Strings, _ => null },
+                IgnoreCondition = IgnoreCondition switch
+                {
+                    IgnoreOption.Never => DefaultIgnoreCondition.Never,
+                    IgnoreOption.WhenWritingNull => DefaultIgnoreCondition.WhenWritingNull,
+                    IgnoreOption.WhenWritingDefault => DefaultIgnoreCondition.WhenWritingDefault,
+                    _ => null,
+                },
+                IncludeFields = FromOption(IncludeFields),
+                IgnoreReadOnlyProperties = FromOption(IgnoreReadOnlyProperties),
+                IgnoreReadOnlyFields = FromOption(IgnoreReadOnlyFields),
+                WriteNumbersAsStrings = FromOption(WriteNumbersAsStrings),
+                OverrideSpecifiedNames = FromOption(OverrideSpecifiedNames),
+                ReferenceHandling = ReferenceHandling switch
+                {
+                    ReferenceOption.None => ReferenceHandlingMode.None,
+                    ReferenceOption.Preserve => ReferenceHandlingMode.Preserve,
+                    ReferenceOption.IgnoreCycles => ReferenceHandlingMode.IgnoreCycles,
+                    _ => null,
+                },
+            },
+        };
         store.Write(SettingsSerializer.StoreKey, SettingsSerializer.ToJson(settings));
         SettingsSaved?.Invoke(this, settings);
     }
+
+    private static NamingOption ToOption(NamingPolicyKind? value) => value is null ? NamingOption.ProfileDefault : (NamingOption)((int)value.Value + 1);
+
+    private static NamingPolicyKind? FromOption(NamingOption value) => value == NamingOption.ProfileDefault ? null : (NamingPolicyKind)((int)value - 1);
+
+    private static ToggleOption ToOption(bool? value) => value switch { true => ToggleOption.Enabled, false => ToggleOption.Disabled, _ => ToggleOption.ProfileDefault };
+
+    private static bool? FromOption(ToggleOption value) => value switch { ToggleOption.Enabled => true, ToggleOption.Disabled => false, _ => null };
+}
+
+/// <summary>Three-state option: keep the profile value or override it.</summary>
+public enum ToggleOption
+{
+    ProfileDefault,
+    Enabled,
+    Disabled,
+}
+
+/// <summary>Naming override (order must match <see cref="NamingPolicyKind"/> + 1).</summary>
+public enum NamingOption
+{
+    ProfileDefault,
+    Unchanged,
+    CamelCase,
+    SnakeCaseLower,
+    SnakeCaseUpper,
+    KebabCaseLower,
+    KebabCaseUpper,
+}
+
+public enum EnumOption
+{
+    ProfileDefault,
+    Numbers,
+    Strings,
+}
+
+public enum IgnoreOption
+{
+    ProfileDefault,
+    Never,
+    WhenWritingNull,
+    WhenWritingDefault,
+}
+
+public enum ReferenceOption
+{
+    ProfileDefault,
+    None,
+    Preserve,
+    IgnoreCycles,
 }

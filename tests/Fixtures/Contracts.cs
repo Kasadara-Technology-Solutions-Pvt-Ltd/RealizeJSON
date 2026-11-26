@@ -351,6 +351,11 @@ namespace Fixtures
         Done = 2,
     }
 
+    public class HalfValues
+    {
+        public Half Ratio { get; set; }
+    }
+
     public class ComputedMembers
     {
         public int Quantity { get; set; }

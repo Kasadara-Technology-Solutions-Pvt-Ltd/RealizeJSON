@@ -1,5 +1,6 @@
 using System.ComponentModel.Design;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Threading;
 using Task = System.Threading.Tasks.Task;
 
 namespace RealizeJSON.VisualStudio;
@@ -16,11 +17,11 @@ internal static class PreviewCommands
         }
 
         commands.AddCommand(new MenuCommand(
-            (_, _) => package.JoinableTaskFactory.RunAsync(() => package.ShowPreviewAsync(selectCaretType: false)).FileAndForget("RealizeJSON/ShowWindow"),
+            (_, _) => package.JoinableTaskFactory.RunAsync(() => package.ShowPreviewAsync(selectCaretType: false)).Task.Forget(),
             new CommandID(PackageIds.CommandSet, PackageIds.ShowToolWindowCommandId)));
 
         commands.AddCommand(new MenuCommand(
-            (_, _) => package.JoinableTaskFactory.RunAsync(() => package.ShowPreviewAsync(selectCaretType: true)).FileAndForget("RealizeJSON/PreviewAsJson"),
+            (_, _) => package.JoinableTaskFactory.RunAsync(() => package.ShowPreviewAsync(selectCaretType: true)).Task.Forget(),
             new CommandID(PackageIds.CommandSet, PackageIds.PreviewAsJsonCommandId)));
     }
 }

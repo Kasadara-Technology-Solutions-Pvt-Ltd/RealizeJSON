@@ -61,13 +61,28 @@ public sealed class RealizeJSONPackage : AsyncPackage
     /// <summary>Shows (and creates if needed) the tool window.</summary>
     public async System.Threading.Tasks.Task<PreviewToolWindow?> ShowPreviewAsync(bool selectCaretType)
     {
-        var window = await ShowToolWindowAsync(typeof(PreviewToolWindow), 0, create: true, DisposalToken) as PreviewToolWindow;
-        if (window is not null && selectCaretType)
+        try
         {
-            window.Session?.PreviewTypeAtCaret();
-        }
+            var window = await ShowToolWindowAsync(typeof(PreviewToolWindow), 0, create: true, DisposalToken) as PreviewToolWindow;
+            if (window is not null && selectCaretType)
+            {
+                window.Session?.PreviewTypeAtCaret();
+            }
 
-        return window;
+            return window;
+        }
+        catch (OperationCanceledException)
+        {
+            return null;
+        }
+#pragma warning disable CA1031 // Fault isolation: never let a tool-window failure crash the IDE.
+        catch (Exception ex)
+#pragma warning restore CA1031
+        {
+            // Local ActivityLog only (no telemetry); the message never contains source text.
+            ActivityLog.TryLogError("RealizeJSON", "Failed to open the RealizeJSON window: " + ex.GetType().Name + ": " + ex.Message);
+            return null;
+        }
     }
 }
 

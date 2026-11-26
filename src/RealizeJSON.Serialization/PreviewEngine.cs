@@ -274,11 +274,49 @@ public sealed class PreviewEngine
         ProjectContext = DescribeProject(document.Project),
     };
 
-    private static string DescribeProject(Project project)
+    /// <summary>Project and target framework context, e.g. "Api (net8.0)".</summary>
+    public static string DescribeProject(Project project)
     {
-        // Project names in VS often carry the target framework, e.g. "Api (net8.0)".
+        // Multi-targeted projects are already named "Api (net8.0)" by Visual Studio.
         var name = project.Name;
-        return name.Contains("(") ? name : name + " (" + (project.ParseOptions?.Language ?? LanguageNames.CSharp) + ")";
+        if (name.IndexOf('(') >= 0)
+        {
+            return name;
+        }
+
+        var framework = InferTargetFramework(project.ParseOptions?.PreprocessorSymbolNames ?? Enumerable.Empty<string>());
+        return framework is null ? name : name + " (" + framework + ")";
+    }
+
+    /// <summary>Infers the target framework moniker from compiler preprocessor symbols (NET8_0, NETSTANDARD2_0, NET472…).</summary>
+    public static string? InferTargetFramework(IEnumerable<string> symbols)
+    {
+        var list = symbols.ToList();
+        var modern = list.Where(s => System.Text.RegularExpressions.Regex.IsMatch(s, @"^NET\d+_\d+$"))
+            .Select(s => s.Substring(3).Split('_'))
+            .Select(p => (Major: int.Parse(p[0], System.Globalization.CultureInfo.InvariantCulture), Minor: int.Parse(p[1], System.Globalization.CultureInfo.InvariantCulture)))
+            .Where(v => v.Major >= 5)
+            .OrderByDescending(v => v.Major).ThenByDescending(v => v.Minor)
+            .FirstOrDefault();
+        if (modern.Major > 0)
+        {
+            return "net" + modern.Major.ToString(System.Globalization.CultureInfo.InvariantCulture) + "." + modern.Minor.ToString(System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        var standard = list.Where(s => System.Text.RegularExpressions.Regex.IsMatch(s, @"^NETSTANDARD\d_\d$")).OrderByDescending(s => s, StringComparer.Ordinal).FirstOrDefault();
+        if (standard is not null)
+        {
+            return "netstandard" + standard.Substring(11).Replace('_', '.');
+        }
+
+        var framework = list.Where(s => System.Text.RegularExpressions.Regex.IsMatch(s, @"^NET4\d{1,2}$")).OrderByDescending(s => s, StringComparer.Ordinal).FirstOrDefault();
+        if (framework is not null)
+        {
+            return "net" + framework.Substring(3);
+        }
+
+        var core = list.Where(s => System.Text.RegularExpressions.Regex.IsMatch(s, @"^NETCOREAPP\d_\d$")).OrderByDescending(s => s, StringComparer.Ordinal).FirstOrDefault();
+        return core is null ? null : "netcoreapp" + core.Substring(10).Replace('_', '.');
     }
 
     private static IReadOnlyList<PreviewDiagnostic> Deduplicate(IEnumerable<PreviewDiagnostic> diagnostics)

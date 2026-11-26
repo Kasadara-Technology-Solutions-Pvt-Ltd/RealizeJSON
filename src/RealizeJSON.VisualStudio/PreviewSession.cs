@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.CodeAnalysis;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Threading;
 using RealizeJSON.Serialization;
 using RealizeJSON.Serialization.NewtonsoftJson;
 using RealizeJSON.Serialization.SystemTextJson;
@@ -103,14 +104,17 @@ internal sealed class PreviewSession : IDisposable
 
         var (applied, _) = SolutionProfile.Apply(_userSettings, json);
         _effectiveSettings = applied;
+        var hasSolutionProfile = json is not null;
         _services.JoinableTaskFactory.RunAsync(async () =>
         {
             await _services.JoinableTaskFactory.SwitchToMainThreadAsync();
             if (!_disposed)
             {
+                ViewModel.PersistChanges = false;
                 ViewModel.ApplySettings(applied);
+                ViewModel.PersistChanges = !hasSolutionProfile;
             }
-        }).FileAndForget("RealizeJSON/SolutionProfile");
+        }).Task.Forget();
     }
 
     private void OnOptionsSaved(object? sender, UserSettings settings)

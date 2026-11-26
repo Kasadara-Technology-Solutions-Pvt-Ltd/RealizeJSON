@@ -116,3 +116,17 @@ public sealed class ViewModelTests
         Assert.Equal(SerializerKind.NewtonsoftJson, persisted.Serializer);
     }
 }
+
+public sealed class ViewModelPersistenceTests
+{
+    [Fact]
+    public void Session_only_changes_are_not_persisted()
+    {
+        var store = new MemoryStore();
+        var coordinator = new PreviewCoordinator(WorkspaceFactory.CreateEngine(), new FakeEditor(), () => new UserSettings());
+        using var vm = new PreviewViewModel(coordinator, new ImmediateDispatcher(), new FakeHost(), store, new UserSettings()) { PersistChanges = false };
+        vm.CollectionCount = 4;
+        Assert.Empty(store.Values);
+        Assert.Equal(4, vm.Settings.CollectionCount);
+    }
+}
