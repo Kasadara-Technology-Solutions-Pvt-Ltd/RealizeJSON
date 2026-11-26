@@ -29,5 +29,5 @@ All notable changes to this project are documented here. The format follows
 
 ### Not yet validated
 
-- VSIX packaging and in-IDE behavior (no Windows/Visual Studio environment was available). See
-  `IMPLEMENTATION-STATUS.md`.
+- Installation and in-IDE behavior (the VSIX is built and content-verified by CI, but has not been installed in
+  Visual Studio yet). See `IMPLEMENTATION-STATUS.md`.

@@ -9,8 +9,8 @@ with impact noted; **Blocked** = cannot be completed in the current environment.
 | Item | State |
 |---|---|
 | Development environment | Linux x64 container, .NET SDK 10.0.115, PowerShell 7.7, no Windows, no Visual Studio |
-| GitHub push | **Blocked** — the Claude GitHub App has no access to `Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON` (push returned HTTP 403, gate `repo_not_connected`). All work is committed locally on `claude/realizejson-implementation-qupuxw`. Fix: an org owner installs the Claude GitHub App on the repository (https://github.com/apps/claude/installations/select_target) or reconnects GitHub at https://claude.ai/connect-github; then `git push -u origin claude/realizejson-implementation-qupuxw`. |
-| VSIX packaging | **Blocked** here (VSSDK build tasks require Windows). Reproduce: `pwsh ./build/package.ps1` on Windows with VS 2022+/Build Tools, or the CI `vsix` job once the branch is pushed. |
+| GitHub | Resolved 2026-11-26: branch pushed, PR #1 open against `main`. |
+| VSIX packaging | Done in CI (`windows-latest`, full MSBuild, VSSDK BuildTools 17.14.2142): `RealizeJSON-vsix` artifact built and verified by `build/inspect-vsix.ps1`. Not yet installed in an IDE. |
 | IDE validation | **Blocked** (no Visual Studio). Manual procedure: `docs/TESTING.md` § IDE integration validation. |
 
 ## Compatibility matrix
@@ -33,7 +33,7 @@ Do not advertise any host as supported until it is validated.
 | M2 MVP | Done (unvalidated in IDE) |
 | M3 Advanced (P1) | Done except FR-06 constant-initializer mode and Newtonsoft type-name polymorphism (deferred) |
 | M4 Hardening | Differential, security, lifecycle, performance (test host) done; IDE accessibility/compatibility validation blocked |
-| M5 Distribution | Docs, notices, listing draft, checklist, license done; VSIX artifact blocked |
+| M5 Distribution | Docs, notices, listing draft, checklist, license and CI-built VSIX done; install/IDE validation pending |
 
 ## Requirements
 
@@ -80,12 +80,11 @@ Do not advertise any host as supported until it is validated.
 | NFR-09 | Minimal dependencies, notices, inventory, reproducible builds | Done | `THIRD-PARTY-NOTICES.md`, `docs/DECISIONS.md`; deterministic builds |
 | NFR-10 | Nullable, analyzers, formatting config, documented interfaces | Done | Warnings as errors; `.editorconfig` |
 | §2.2 | Brand identity, assets, palette, contrast | Done | `docs/BRAND.md`, `assets/branding/` |
-| §11 | VSIX with manifest, identifier, icon, metadata | Build configured; **artifact blocked** | `source.extension.vsixmanifest`, `build/inspect-vsix.ps1` |
+| §11 | VSIX with manifest, identifier, icon, metadata | Done (CI artifact; install unvalidated) | `source.extension.vsixmanifest`, `build/inspect-vsix.ps1` |
 | §11 | License | Done | Apache-2.0 (`LICENSE`), included in the VSIX |
 
 ## Known gaps to address next
 
-1. Run CI on Windows (requires GitHub access) and fix any VSSDK build issues in the SDK-style VSIX project.
 2. Execute the IDE validation procedure on VS 2022 17.8, latest VS 2022 and VS 2026; capture screenshots.
 3. FR-06 constant-initializer inference (P1) and Newtonsoft `TypeNameHandling` previews (P1, opt-in only).
 4. Measure in-IDE latency and memory across solution switches.

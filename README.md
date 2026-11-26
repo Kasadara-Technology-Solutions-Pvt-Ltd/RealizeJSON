@@ -23,7 +23,7 @@ source with Roslyn and applies the real member, naming and attribute rules of **
 | Core engine (Roslyn analysis, contracts, both serializers, sample generation) | Implemented, 630+ automated tests |
 | Differential accuracy vs. real serializers | 433 scenario tests match System.Text.Json (.NET 10) and Newtonsoft.Json 13.0.4 byte-for-byte |
 | Visual Studio host (tool window, commands, live events) | Implemented; compiles against the VS 2022 17.8 SDK. **Not yet validated in a running IDE** |
-| VSIX package | Build pipeline in place (Windows only); **not yet produced or installed** — see [IMPLEMENTATION-STATUS.md](IMPLEMENTATION-STATUS.md) |
+| VSIX package | Built and content-verified by CI on `windows-latest` (artifact `RealizeJSON-vsix`); **not yet installed in an IDE** — see [IMPLEMENTATION-STATUS.md](IMPLEMENTATION-STATUS.md) |
 
 See [IMPLEMENTATION-STATUS.md](IMPLEMENTATION-STATUS.md) for the requirement-by-requirement status and blockers.
 
