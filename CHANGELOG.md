@@ -5,6 +5,22 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-26
+
+### Changed
+
+- The VSIX publisher is now "Kasadara Technology Solutions Pvt Ltd", matching the Visual Studio Marketplace publisher
+  `kasadara`, so the package can be uploaded to the Marketplace. The extension is marked as a preview.
+
+### Added
+
+- `publishManifest.json` and a Marketplace overview page (`docs/marketplace/overview.md`) for publishing with
+  `VsixPublisher.exe`.
+
+### Known limitations
+
+- Installation and in-IDE behavior have not yet been validated in Visual Studio. See `IMPLEMENTATION-STATUS.md`.
+
 ## [0.1.0] - 2026-11-26
 
 ### Added
@@ -34,5 +50,6 @@ All notable changes to this project are documented here. The format follows
 - Installation and in-IDE behavior (the VSIX is built and content-verified by CI, but has not been installed in
   Visual Studio yet). See `IMPLEMENTATION-STATUS.md`.
 
-[Unreleased]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases/tag/v0.1.1
 [0.1.0]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases/tag/v0.1.0

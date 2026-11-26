@@ -69,9 +69,12 @@ by text version.
 
 ## ADR-008 — Publisher display name and identity
 
-The VSIX `Publisher` display string is "Kasadara Technology Solutions Private Limited" (the organization named by the
-project owner). No Visual Studio Marketplace publisher ID has been created or assumed; publishing requires separate
-authorization (see the release checklist).
+The Visual Studio Marketplace publisher was created by the owner on 2026-11-26: ID `kasadara`, display name
+"Kasadara Technology Solutions Pvt Ltd". From 0.1.1 the VSIX `Publisher` attribute uses that exact display name
+(0.1.0 used "Kasadara Technology Solutions Private Limited"), so Marketplace uploads match the publisher.
+`src/RealizeJSON.VisualStudio/publishManifest.json` references the publisher ID. The legal entity name stays in
+`NOTICE`. Marketplace publishing is a manual step that needs the owner's credentials; no token is stored in the
+repository or in CI.
 
 ## ADR-009 — No telemetry
 

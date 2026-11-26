@@ -7,7 +7,7 @@
 - [x] **VSIX build** succeeds on `windows-latest` (CI job `vsix`) and `build/inspect-vsix.ps1` passes.
 - [ ] **IDE validation**: every step in `docs/TESTING.md` § IDE integration validation passes on VS 2022 17.8 (oldest),
       latest VS 2022, VS 2022 Arm64 (if advertised) and VS 2026 (if advertised). Update the compatibility matrix.
-- [ ] **Marketplace publisher** ID created and confirmed; `publishManifest.json` prepared (not committed with secrets).
+- [x] **Marketplace publisher** `kasadara` created; `src/RealizeJSON.VisualStudio/publishManifest.json` prepared (no secrets committed).
 - [ ] **Trademark/domain** clearance for "RealizeJSON" (not verified).
 - [ ] Screenshots captured from the validated build.
 
@@ -26,4 +26,11 @@
    The **Release** workflow verifies the version against the tag, builds, tests, packages and inspects the VSIX, and
    publishes a GitHub Release with `RealizeJSON-X.Y.Z.vsix` and `SHA256SUMS.txt`. 0.x versions and `-suffix` tags
    are published as pre-releases.
-7. Publish to the Marketplace only with explicit authorization.
+7. Publish to the Marketplace only with explicit authorization, from Windows, using the VSIX from the GitHub Release:
+   ```bash
+   VsixPublisher.exe publish -payload RealizeJSON-X.Y.Z.vsix -publishManifest src/RealizeJSON.VisualStudio/publishManifest.json -personalAccessToken <token>
+   ```
+   `VsixPublisher.exe` ships with Visual Studio (`VSSDK\VisualStudioIntegration\Tools\Bin`) and in the
+   `Microsoft.VSSDK.BuildTools` package (`tools\vssdk\bin`). The token is an Azure DevOps personal access token with
+   the **Marketplace › Manage** scope for the `kasadara` publisher; never commit it or store it in the repository.
+   Alternatively, upload the VSIX at https://marketplace.visualstudio.com/manage/publishers/kasadara.
