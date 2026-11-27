@@ -18,18 +18,28 @@ The value must equal the hash in `SHA256SUMS.txt`.
 - C# language services (installed with any .NET development workload).
 - Visual Studio 2022 and Arm64 are not supported yet: they have not been validated (ADR-011).
 
-## Install
+## Install from the Visual Studio Marketplace (recommended)
+
+1. In Visual Studio 2026, open **Extensions › Manage Extensions**.
+2. Search for **RealizeJSON** (publisher [Kasadara](https://marketplace.visualstudio.com/publishers/kasadara)) and choose **Install**.
+3. Restart Visual Studio when prompted, then open **View › Other Windows › RealizeJSON**.
+
+Updates are delivered through **Manage Extensions**.
+
+## Install from a GitHub release
 
 1. Close all Visual Studio instances.
-2. Double-click `RealizeJSON.VisualStudio.vsix` (runs `VSIXInstaller.exe`), select the Visual Studio instances and
+2. Double-click `RealizeJSON-<version>.vsix` (runs `VSIXInstaller.exe`), select the Visual Studio instances and
    choose **Install**.
 3. Start Visual Studio and open **View › Other Windows › RealizeJSON**.
 
 Command line (silent, for a specific instance):
 
 ```bash
-"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\VSIXInstaller.exe" /quiet RealizeJSON.VisualStudio.vsix
+"<Visual Studio install folder>\Common7\IDE\VSIXInstaller.exe" /quiet RealizeJSON-<version>.vsix
 ```
+
+The install folder is shown in the Visual Studio Installer (**More › Modify**, then **Installation locations**).
 
 ## Try it in the experimental instance (contributors)
 

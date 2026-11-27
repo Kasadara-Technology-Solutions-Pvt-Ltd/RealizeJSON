@@ -11,6 +11,8 @@
       1.0.0 was released by the maintainer's decision with the remaining steps open and the targets narrowed to
       VS 2026 x64 (ADR-011).
 - [x] **Marketplace publisher** `kasadara` created; `src/RealizeJSON.VisualStudio/publishManifest.json` prepared (no secrets committed).
+- [x] **Marketplace upload**: 1.0.1 uploaded by the maintainer on 2026-11-27 (1.0.0 was rejected: outdated VSSDK build
+      tools and a publisher name mismatch, fixed in 1.0.1).
 - [ ] **Trademark/domain** clearance for "RealizeJSON" (not verified).
 - [ ] Screenshots captured from the validated build.
 

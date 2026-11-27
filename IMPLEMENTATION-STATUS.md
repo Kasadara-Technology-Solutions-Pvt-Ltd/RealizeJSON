@@ -1,6 +1,6 @@
 # Implementation status
 
-Last updated: 2026-11-26. Legend: **Done** = implemented and covered by automated tests; **Done (unvalidated)** =
+Last updated: 2026-11-27. Legend: **Done** = implemented and covered by automated tests; **Done (unvalidated)** =
 implemented and compiled, requires the in-IDE validation in `docs/TESTING.md`; **Deferred** = intentionally postponed
 with impact noted; **Blocked** = cannot be completed in the current environment.
 
@@ -9,7 +9,7 @@ with impact noted; **Blocked** = cannot be completed in the current environment.
 | Item | State |
 |---|---|
 | Development environment | Linux x64 container, .NET SDK 10.0.115, PowerShell 7.7, no Windows, no Visual Studio |
-| GitHub | Resolved 2026-11-26: branch pushed, PR #1 open against `main`. |
+| GitHub | Resolved 2026-11-26: CI on push and pull requests; releases published from tags. |
 | VSIX packaging | Done in CI (`windows-latest`, full MSBuild, VSSDK BuildTools 18.12.1606): `RealizeJSON-vsix` artifact built and verified by `build/inspect-vsix.ps1`. 0.1.1 installs in Visual Studio 2026 (18.0). |
 | IDE validation | **Partial**, performed by the maintainer: 0.1.2 on Visual Studio 2026 (18.0) passed steps 1, 3, 4, 5, 6, 8, 10, 11, 12, 15. Other steps and other hosts not run. Results: `docs/TESTING.md` § IDE integration validation. |
 
@@ -33,7 +33,7 @@ Do not advertise any host as supported until it is validated.
 | M2 MVP | Done (unvalidated in IDE) |
 | M3 Advanced (P1) | Done except FR-06 constant-initializer mode and Newtonsoft type-name polymorphism (deferred) |
 | M4 Hardening | Differential, security, lifecycle, performance (test host) done; IDE accessibility/compatibility validation blocked |
-| M5 Distribution | Docs, notices, listing draft, checklist, license, releases 0.1.0–0.1.2 and 1.0.0 done; IDE validation partial (VS 2026 18.0) |
+| M5 Distribution | Docs, notices, listing draft, checklist, license, releases 0.1.0–1.0.1 done; 1.0.1 on the Visual Studio Marketplace (2026-11-27); IDE validation partial (VS 2026 18.0) |
 
 ## Requirements
 

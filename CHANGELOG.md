@@ -5,6 +5,10 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Documentation
+
+- Install instructions point to the Visual Studio Marketplace, where 1.0.1 is published.
+
 ## [1.0.1] - 2026-11-26
 
 ### Fixed
