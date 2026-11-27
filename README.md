@@ -23,7 +23,7 @@ source with Roslyn and applies the real member, naming and attribute rules of **
 | Core engine (Roslyn analysis, contracts, both serializers, sample generation) | Implemented, 630+ automated tests |
 | Differential accuracy vs. real serializers | 433 scenario tests match System.Text.Json (.NET 10) and Newtonsoft.Json 13.0.4 byte-for-byte |
 | Visual Studio host (tool window, commands, live events) | Implemented; validated on Visual Studio 2026 (18.0), see [docs/TESTING.md](docs/TESTING.md) |
-| VSIX package | Built and content-verified by CI on `windows-latest`; published on [GitHub Releases](https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases) |
+| VSIX package | Built and content-verified by CI on `windows-latest`; published on the [Visual Studio Marketplace](https://marketplace.visualstudio.com/publishers/kasadara) and [GitHub Releases](https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases) |
 
 See [IMPLEMENTATION-STATUS.md](IMPLEMENTATION-STATUS.md) for the requirement-by-requirement status and blockers.
 
@@ -65,8 +65,10 @@ See [IMPLEMENTATION-STATUS.md](IMPLEMENTATION-STATUS.md) for the requirement-by-
 
 ## Getting started
 
-1. Download `RealizeJSON-<version>.vsix` from [GitHub Releases](https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases)
-   (verify it against `SHA256SUMS.txt`) and install it (see [docs/INSTALL.md](docs/INSTALL.md)).
+1. In Visual Studio 2026, open **Extensions › Manage Extensions**, search for **RealizeJSON**
+   (publisher [Kasadara](https://marketplace.visualstudio.com/publishers/kasadara)) and install it. Alternatively, download `RealizeJSON-<version>.vsix` from
+   [GitHub Releases](https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases) and verify it against
+   `SHA256SUMS.txt` (see [docs/INSTALL.md](docs/INSTALL.md)).
 2. Open a C# file and choose **View › Other Windows › RealizeJSON**, or right-click in the editor and choose
    **Preview as JSON** (default shortcut **Ctrl+Shift+Alt+J**, rebindable under *Tools › Options › Environment ›
    Keyboard*).

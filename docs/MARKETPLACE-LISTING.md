@@ -1,7 +1,8 @@
-# Visual Studio Marketplace listing (draft — not published)
+# Visual Studio Marketplace listing
 
-> Publishing requires separate authorization, screenshots
-> from a validated build and completion of the release checklist. Nothing here has been submitted.
+RealizeJSON 1.0.1 was uploaded to the Visual Studio Marketplace by the maintainer on 2026-11-27, under the publisher
+[`kasadara`](https://marketplace.visualstudio.com/publishers/kasadara). The listing body is `docs/marketplace/overview.md`; the metadata below matches the VSIX manifest.
+Screenshots are still to be added.
 
 ## Metadata
 
