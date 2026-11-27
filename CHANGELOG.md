@@ -5,6 +5,14 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-11-26
+
+### Fixed
+
+- Visual Studio Marketplace upload: the VSIX is built with VSSDK build tools 18.12.1606 (required for extensions that
+  target Visual Studio 18.0 or later), and its publisher is "Kasadara", matching the Marketplace publisher display
+  name.
+
 ## [1.0.0] - 2026-11-26
 
 First production release.
@@ -78,7 +86,8 @@ First production release.
 - Installation and in-IDE behavior (the VSIX is built and content-verified by CI, but has not been installed in
   Visual Studio yet). See `IMPLEMENTATION-STATUS.md`.
 
-[Unreleased]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases/tag/v1.0.1
 [1.0.0]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases/tag/v1.0.0
 [0.1.2]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases/tag/v0.1.2
 [0.1.1]: https://github.com/Kasadara-Technology-Solutions-Pvt-Ltd/RealizeJSON/releases/tag/v0.1.1
